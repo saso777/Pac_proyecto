@@ -301,6 +301,10 @@ void Pantalla_GameOver::selecOption(int x, int y)
 
 									}
 
+									n = n - 3000;
+									cout << "Vidas:        " << endl;
+									setLine(to_string(n), "Game_Files/Data/Score/ptj_Total.txt", 4);
+
 								}
 								else {
 
