@@ -140,6 +140,7 @@
     <ClCompile Include="Pantalla_Jugador.cpp" />
     <ClCompile Include="Pantalla_Lvl.cpp" />
     <ClCompile Include="Personaje.cpp" />
+    <ClCompile Include="TextField.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Boton.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Pantalla_Jugador.h" />
     <ClInclude Include="Pantalla_Lvl.h" />
     <ClInclude Include="Personaje.h" />
+    <ClInclude Include="TextField.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
