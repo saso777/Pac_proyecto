@@ -1,0 +1,8 @@
+total puntos:
+0
+total de puntos en posecion:
+0
+total de puntos con vidas perdidas:
+0
+total de puntos sin vidas perdidas:
+0
