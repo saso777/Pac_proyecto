@@ -288,6 +288,7 @@ void Pantalla_GameOver::selecOption(int x, int y)
 							n = n + ptsTotal;
 							f.close();
 							if (vidas < 6) {
+
 								if (n >= 3000) {
 
 									vidas++;//estas vidas no se pasan a las vidas en la vara de juego
@@ -300,10 +301,6 @@ void Pantalla_GameOver::selecOption(int x, int y)
 
 									}
 
-
-
-
-
 								}
 								else {
 
@@ -315,7 +312,6 @@ void Pantalla_GameOver::selecOption(int x, int y)
 
 						}
 
-
 					}
 					else if (botones[i]->getAccion() == "Continuar Partida") {
 
@@ -323,7 +319,7 @@ void Pantalla_GameOver::selecOption(int x, int y)
 
 							continuarPartida = true;
 							rw->close();
-
+							
 						}
 						else {
 

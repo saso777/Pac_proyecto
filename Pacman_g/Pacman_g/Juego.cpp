@@ -193,7 +193,6 @@ void Juego::gameLoop()
 			}
 			if (pacman->getComer() == true) {
 
-
 				tiempo_de_poder++;//el problemita aqui es que el tiempo no se reinicia si se come otro power pellet
 				//sino que continua solamente
 				//ademas como esta con base a la cantidad de frames entonces puede durar 9.5 segundos o similar
