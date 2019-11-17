@@ -1,4 +1,4 @@
-xxxxxxxxxxxxxxxxxxx
+xxxx.xxxxxxxxx.xxxx
 x#11#111#x#111#11#x
 x0xx1xxx1x1xxx1xx0x
 x#11#1#1#1#1#1#11#x
@@ -18,4 +18,4 @@ xx1x1x1xxxxx1x1x1xx
 x##1#x#1#x#1#x#1##x
 x1xxxxxx1x1xxxxxx1x
 x#111111#1#111111#x
-xxxxxxxxxxxxxxxxxxx
+xxxx.xxxxxxxxx.xxxx
