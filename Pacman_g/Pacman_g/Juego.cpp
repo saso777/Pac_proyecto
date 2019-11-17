@@ -1,6 +1,7 @@
 #include "Juego.h"
 Juego::Juego(Mapa* mapa, int lvl, string tema)
 {
+	cout << "Inicia Juego" << endl;
 	juegoIniciado = false;
 
 	pantalla_gameOver = NULL;
