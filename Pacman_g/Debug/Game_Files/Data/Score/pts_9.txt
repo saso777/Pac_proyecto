@@ -1,0 +1,6 @@
+mayor cantidad puntos en este nivel:
+0
+cantidad veces jugado:
+0
+mejor tiempo en este nivel:
+1000000000000000000000000000
