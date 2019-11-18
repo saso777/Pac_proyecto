@@ -9,19 +9,19 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	//datos
 	nivel = lvl;
 	vidas = obtenerVidas();
-	//para visualizar las vidas, tiempo y el puntaje en pantalla por primera vez...
+		//para visualizar las vidas, tiempo y el puntaje en pantalla por primera vez...
 
 	actualizarTextTiempo();
 	evaluarVidas();
 	actualizaTextPtjTotal();
 
-	//para visualizar las vidas, tiempo y el puntajeen pantalla por primera vez...
-	//para visualizar los puntos por primera vez;
+		//para visualizar las vidas, tiempo y el puntajeen pantalla por primera vez...
+		//para visualizar los puntos por primera vez;
 
-	//para visualizar los puntos por primera vez;
+		//para visualizar los puntos por primera vez;
 
 
-	//inicializar Datos
+		//inicializar Datos
 	fantasmasMuertos = 0;
 	ptsTotal = 0;
 	tiempo = 0;
@@ -30,11 +30,11 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 
 
 	tiempo_de_poder = 0;
-	//inicializar Datos
-//Datos
+		//inicializar Datos
+	//Datos
 
 
-//referente a personajes
+	//referente a personajes
 	pacman = NULL;
 	for (int i = 0; i < 4; i++) {
 		fantasmas[i] = NULL;
@@ -49,7 +49,7 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	texture.loadFromFile("Game_Files/Textures/Backgrounds/Lvl" + to_string(lvl) + "/" + tema + ".jpg");
 	background = new Sprite(texture);
 	background->setPosition(0, 0);
-	////////rectangulo para resaltar mapa
+		////////rectangulo para resaltar mapa
 	backBanckground = new Sprite();
 	Texture texture1;
 	if (texture1.loadFromFile("Game_Files/Textures/UI/Buttons/grey_panel.png")) {
@@ -59,7 +59,7 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 		Color* color = new Color(300, 300, 300, 120);
 		backBanckground->setColor(*color);
 	}
-	////////rectangulo para resaltar mapa
+		////////rectangulo para resaltar mapa
 	nombre = "NIVEL" + to_string(lvl) + ": " + tema;
 	rx = 1024;
 	ry = 720;
@@ -75,17 +75,14 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	cargarMapaVisual();
 	//referente al escenario
 
-
-	cout << "Posicion X: " << scenario[0][0]->getSprite()->getPosition().x << endl;
-	cout << "Pacdots Totales Restantes: " << pacDots << endl;
-	cout << "Pts Optenidos: " << ptsTotal << endl;
-	mapa->generaMatrizDeAdyacencia(); //Matriz de adyacencia
-	Nodo* lista = mapa->getListaAdyacencia();
+	//Matriz de adyacencia
+	mapa->generaMatrizDeAdyacencia(); 
+	lista = mapa->getListaAdyacencia();//inicializa la lista;
 	cout << "\n\nLISTA DE ADYANCECIA\n\n";
 	mapa->getListaAdyacencia()->mostrarLista(lista);
 	cout << "\n\nLISTA DE ADYANCECIA\n\n";
 
-	Nodo* camino = dijkstra(lista, 47, 29);
+	camino = dijkstra(lista, 47, 29);//crea la ruta que se tiene que seguir
 
 	while (camino->getSiguiente() != NULL) {
 		camino = camino->getSiguiente();
@@ -93,6 +90,7 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	int peso = camino->getPesoAcumulado();
 
 	cout << "RUTA MAS CORTA\n";
+	/*
 	while (camino != NULL) {
 		if (camino->getPredecesor() != NULL) {
 			cout << camino->getId() << "->";
@@ -102,7 +100,27 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 		}
 		camino = camino->getPredecesor();
 	}
+	*/
+	while (camino != NULL) {
+		if (camino->getPredecesor() != NULL) {
+			cout << camino->getId() << "->" << endl;
+		}
+		else {
+			cout << camino->getId() << endl;
+		}
+
+		cout << "X: " << camino->getX() << "  Y: " << camino->getY() << endl;
+
+		camino = camino->getPredecesor();
+	}
+
 	cout << "\n\nCON PESO DE: " << peso << endl;
+	////////////////////////////////////////////////////
+
+	cout << "Posicion X: " << scenario[0][0]->getSprite()->getPosition().x << endl;
+	cout << "Pacdots Totales Restantes: " << pacDots << endl;
+	cout << "Pts Optenidos: " << ptsTotal << endl;
+
 
 	gameLoop();
 
@@ -767,10 +785,10 @@ Nodo* Juego::dijkstra(Nodo*& lista, int x, int y) {
 						nodo->setIteraciones(iteraciones);
 						nodo->setPesoAcumulado(nodoDato->getPesoAcumulado() + vertices->getPeso());
 						nodo->setPredecesor(nodoDato);
-						nodo->setX(nodoDato->getX());
-						nodo->setY(nodoDato->getY());
-						nodo->setPx(nodo->getPx());
-						nodo->setPy(nodo->getPy());
+						nodo->setX(nodoDato1->getX());
+						nodo->setY(nodoDato1->getY());
+						nodo->setPx(nodoDato1->getPx());
+						nodo->setPy(nodoDato1->getPy());
 						lista->insertarNodo(temporales, nodo);
 					}
 					else {

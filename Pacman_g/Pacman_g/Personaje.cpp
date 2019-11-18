@@ -512,8 +512,6 @@ void Personaje::verColisionConFantasmas(int& ptsTotal, int& fantasmasMuertos, in
 
 }
 
-
-
 void Personaje::moverPersonaje(Boton* scenario[21][19], int& ptsTotal, int& pacdots, int& fantasmasMuertos, int& vidas, int& vidasPerdias, Personaje* fantasmas[4])
 {
 	x = x + (velocidad * movH);//asignar nueva ubicacion
@@ -538,3 +536,7 @@ void Personaje::moverPersonaje(Boton* scenario[21][19], int& ptsTotal, int& pacd
 	revisarPosicion(scenario, (velocidad * movH), (velocidad * movV), "Detener", ptsTotal, pacdots, fantasmasMuertos, vidas, vidasPerdias, fantasmas);
 
 }
+
+
+
+//////////////////////////////////ahora vamos con el movimiento de los fantasmas//////////////////////////////////////////

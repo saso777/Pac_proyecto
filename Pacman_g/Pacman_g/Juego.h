@@ -29,6 +29,10 @@ private:
 	//referente a los personajes
 	Personaje* pacman;
 	Personaje* fantasmas[4];
+		//para las rutas de lso fantasmas
+	Nodo* camino,* lista;
+		//para las rutas de lso fantasmas
+
 	//referente a los personajes
 	//referente al UI
 	Boton* poderesDisp[3];
@@ -135,6 +139,5 @@ public:
 	void buscarVertice(int x, int y);
 
 	Nodo* dijkstra(Nodo*& lista, int x, int y);
-
 	//buscar ubicacion de pacman con respecto a la matriz y buscar el vertice en el cual puede ser que este pacman
 };
