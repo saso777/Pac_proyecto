@@ -27,5 +27,7 @@ public:
 	void inicializarMatLetras();
 	void inicializarGrafo();
 	void clcPsNd(Nodo*& nodo, int x, int y);
+	int** generaMatrizDeAdyacencia();
+	int getGrafo(int x,int y);
 
 };

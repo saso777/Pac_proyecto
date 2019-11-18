@@ -190,7 +190,78 @@ void Mapa::inicializarGrafo()
 
 
 	tamGrafo = contNodos;
+	for (int i = 0; i < tamGrafo; i++) {
+		cout << "nodo numero " << i << endl;
+		cout << "  x = " << grafo[i]->getX() << endl;
+		cout << "  Y = " << grafo[i]->getY() << endl;
+		cout << "  peso arriba = " << grafo[i]->getPesoAr() << endl;
+		cout << "  peso abajo = " << grafo[i]->getPesoAb() << endl;
+		cout << "  peso izquierda= " << grafo[i]->getPesoIzq() << endl;
+		cout << "  peso derecha = " << grafo[i]->getPesoDer() << endl;
+		cout << grafo[i]->getX()<< " " << grafo[i]->getY() << " " << grafo[i]->getPesoDer() << " " << grafo[i]->getId() << endl;
+
+	}
 }
+int Mapa::getGrafo(int x, int y) {
+	for (int i = 0; i < tamGrafo; i++) {
+		if (grafo[i]->getX() == x) {
+			if (grafo[i]->getY() == y) {
+				return i;
+			}
+		}
+	}
+	return 0;
+}
+int** Mapa::generaMatrizDeAdyacencia() {
+	//inicia varinantes
+	int fix;
+	int **matriz = new int*[tamGrafo];
+
+	for (int i = 0; i <tamGrafo;i++) {
+		matriz[i] = new int[tamGrafo];
+	}
+	for (int i = 0; i < tamGrafo; i++) {
+		for (int j = 0; j < tamGrafo; j++) {
+			matriz[i][j] = 0;
+		}
+		
+	}
+	
+
+	//aca se setean todos los datos
+	for (int i = 0; i <tamGrafo; i++) {
+		
+		if(grafo[i]->getPesoAr() != 0) {
+			fix = getGrafo(grafo[i]->getX(), grafo[i]->getY() - grafo[i]->getPesoAr());
+			matriz[i][fix]=grafo[i]->getPesoAr();
+		}
+		if (grafo[i]->getPesoAb() != 0) {
+			fix = getGrafo(grafo[i]->getX(), grafo[i]->getY() + grafo[i]->getPesoAb());
+			matriz[i][fix] = grafo[i]->getPesoAb();
+		}
+		if (grafo[i]->getPesoDer() != 0) {
+			fix = getGrafo(grafo[i]->getX() + grafo[i]->getPesoDer(), grafo[i]->getY());
+			matriz[i][fix] = grafo[i]->getPesoDer();
+		}
+		if (grafo[i]->getPesoIzq() != 0) {
+			fix = getGrafo(grafo[i]->getX() - grafo[i]->getPesoIzq(), grafo[i]->getY());
+			int temporal = grafo[i]->getPesoIzq();
+			matriz[i][fix] = temporal;
+		}
+		
+	}
+	for (int i = 0; i < tamGrafo; i++) {
+		for (int j = 0; j < tamGrafo; j++) {
+			cout << matriz[i][j] << " ";
+		}
+		cout << endl;
+	}
+	return matriz;
+	
+
+}
+
+
 
 void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 {

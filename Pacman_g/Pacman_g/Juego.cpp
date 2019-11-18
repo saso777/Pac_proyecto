@@ -79,7 +79,7 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	cout << "Posicion X: " << scenario[0][0]->getSprite()->getPosition().x << endl;
 	cout << "Pacdots Totales Restantes: " << pacDots << endl;
 	cout << "Pts Optenidos: " << ptsTotal << endl;
-
+	mapa->generaMatrizDeAdyacencia(); //Matriz de adyacencia
 	gameLoop();
 
 	cout << "**************************************" << endl;
@@ -227,7 +227,7 @@ void Juego::gameLoop()
 		//cuando se vayan a mover a los fantasmas se deve hacer con el ondicional de juegoIniciado;
 		if (juegoIniciado == true) {
 
-			//moverFatnasmas();
+			//moverFantasmas
 
 		}
 
