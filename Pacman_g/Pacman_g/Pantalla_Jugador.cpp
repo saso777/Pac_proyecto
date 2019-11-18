@@ -105,7 +105,7 @@ void Pantalla_Jugador::ajustarSigPosicionXYTrofeo(int& x, int& y, int i)
 			}
 			else {
 
-				x = (datos[i]->getText()->getPosition().x + datos[i]->getText()->getGlobalBounds().width / 2) + 100;
+				x = (datos[i]->getText()->getPosition().x + datos[i]->getText()->getGlobalBounds().width / 2) + 10;
 
 			}
 
@@ -190,8 +190,11 @@ void Pantalla_Jugador::guardarLineaTrofeo(int posicion, int ubicacionVec, int& x
 			}
 
 		}
+		
 
 		ajustarSigPosicionXYTrofeo(x, y, ubicacionVec);//despues de ajustar la posicion se ajusta la posicion del texto
+
+
 
 	}
 

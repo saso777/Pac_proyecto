@@ -85,4 +85,3 @@ void Vertice::mostrarVertices(Vertice*& vertices) {
 		cout << "->null";
 	}
 }
-

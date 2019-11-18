@@ -80,7 +80,5 @@ public:
 	void moverPersonaje(Boton* scenario[21][19], int& ptsTotal, int& pacdots, int& fantasmasMuertos, int& vidas, int& vidasPerdidas, Personaje* fantasmas[4]);
 	//metodos propios
 
-	//ahora los movimientos de los fantasmas
-	void fElegirVertice();
-	void fMoverFantasma();
+
 };

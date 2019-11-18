@@ -176,4 +176,3 @@ void TextField::ajustarSpriteTexto()
 	}
 
 }
-
