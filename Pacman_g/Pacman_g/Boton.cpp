@@ -67,9 +67,9 @@ Boton::Boton(string accion, string texto, int x, int y, string url, float tx, fl
 
 	if (font->loadFromFile("Game_Files/Fonts/CotrellCFExtraBold-Regular.ttf")) {
 
-		text->setString(texto);
 		text->setFont(*font);
-		text->setOrigin(text->getPosition().x + text->getGlobalBounds().width / 2, (text->getPosition().y + text->getGlobalBounds().height / 2) + 5);
+		text->setString(texto);
+		text->setOrigin(text->getPosition().x + text->getGlobalBounds().width / 2, (text->getPosition().y + text->getGlobalBounds().height / 2));
 		text->setPosition(tx, ty);
 
 	}

@@ -1,2 +1,21 @@
-﻿  TextField.cpp
+﻿  Pantalla_Jugador.cpp
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(94,103): warning C4244:  '+=': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(94,103): warning C4244:         with
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(94,103): warning C4244:         [
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(94,103): warning C4244:             T=float
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(94,103): warning C4244:         ]
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(108,99): warning C4244:  '=': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(108,99): warning C4244:         with
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(108,99): warning C4244:         [
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(108,99): warning C4244:             T=float
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(108,99): warning C4244:         ]
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(154,133): warning C4305:  'argumento': truncamiento de 'double' a 'float'
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(154,119): warning C4244:  'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(154,116): warning C4244:  'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(176,69): warning C4244:  '=': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(176,69): warning C4244:         with
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(176,69): warning C4244:         [
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(176,69): warning C4244:             T=float
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(176,69): warning C4244:         ]
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Pantalla_Jugador.cpp(182,9): warning C4244:  'argumento': conversión de 'int' a 'float'; posible pérdida de datos
   Pacman_g.vcxproj -> C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Debug\Pacman_g.exe
