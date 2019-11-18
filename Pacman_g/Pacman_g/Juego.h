@@ -134,5 +134,7 @@ public:
 	void convertirPosPacMat(int px, int py);
 	void buscarVertice(int x, int y);
 
+	Nodo* dijkstra(Nodo*& lista, int x, int y);
+
 	//buscar ubicacion de pacman con respecto a la matriz y buscar el vertice en el cual puede ser que este pacman
 };

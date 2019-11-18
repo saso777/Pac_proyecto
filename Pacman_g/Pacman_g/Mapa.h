@@ -12,6 +12,7 @@ private:
 	char letras[21][19];
 	int tamGrafo;
 	Nodo** grafo;
+	Nodo* listaAdyacencia;
 public:
 	Mapa(int lvl);
 
@@ -21,11 +22,14 @@ public:
 	char getLetras(int fil, int col);
 	Nodo** getGrafo();
 	Nodo* getGrafo(int indice);
-
+	Nodo* getListaAdyacencia();
 
 	bool verificarTam();
 	void inicializarMatLetras();
 	void inicializarGrafo();
 	void clcPsNd(Nodo*& nodo, int x, int y);
+	int** generaMatrizDeAdyacencia();
+	int getGrafo(int x,int y);
+	void generarListasAdyacencia(int** matriz);
 
 };
