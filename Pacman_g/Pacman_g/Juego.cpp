@@ -80,6 +80,30 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	cout << "Pacdots Totales Restantes: " << pacDots << endl;
 	cout << "Pts Optenidos: " << ptsTotal << endl;
 	mapa->generaMatrizDeAdyacencia(); //Matriz de adyacencia
+	Nodo* lista = mapa->getListaAdyacencia();
+	cout << "\n\nLISTA DE ADYANCECIA\n\n";
+	mapa->getListaAdyacencia()->mostrarLista(lista);
+	cout << "\n\nLISTA DE ADYANCECIA\n\n";
+
+	Nodo* camino = dijkstra(lista, 47, 29);
+
+	while (camino->getSiguiente() != NULL) {
+		camino = camino->getSiguiente();
+	}
+	int peso = camino->getPesoAcumulado();
+
+	cout << "RUTA MAS CORTA\n";
+	while (camino != NULL) {
+		if (camino->getPredecesor() != NULL) {
+			cout << camino->getId() << "->";
+		}
+		else {
+			cout << camino->getId();
+		}
+		camino = camino->getPredecesor();
+	}
+	cout << "\n\nCON PESO DE: " << peso << endl;
+
 	gameLoop();
 
 	cout << "**************************************" << endl;
@@ -718,4 +742,71 @@ void Juego::buscarVertice(int x, int y)
 
 	}
 
+}
+
+Nodo* Juego::dijkstra(Nodo*& lista, int x, int y) {
+	Nodo* temporales = NULL;
+	Nodo* finales = NULL;
+
+	int peso = 0;
+	int iteraciones = 1;
+
+	finales->insertarNodo(finales, finales->getNodoDato(lista, x));
+	temporales->setVisitado(lista, x);
+	bool fin = false;
+	if (x != y) {
+		while (!fin) {
+			Nodo* nodoDato = lista->getNodoDato(finales, x);
+			Nodo* nodoDato1 = lista->getNodoDato(lista, x);
+			Vertice* vertices = nodoDato1->getVertices();
+			while (vertices != NULL) {
+				if (!vertices->getVisitado()) {
+					if (!lista->existe(temporales, vertices->getDato())) {
+						Nodo* nodo = new Nodo();
+						nodo->setId(vertices->getDato());
+						nodo->setIteraciones(iteraciones);
+						nodo->setPesoAcumulado(nodoDato->getPesoAcumulado() + vertices->getPeso());
+						nodo->setPredecesor(nodoDato);
+						nodo->setX(nodoDato->getX());
+						nodo->setY(nodoDato->getY());
+						nodo->setPx(nodo->getPx());
+						nodo->setPy(nodo->getPy());
+						lista->insertarNodo(temporales, nodo);
+					}
+					else {
+						Nodo* aux = temporales; bool encontrado = false;
+						while (!encontrado) {
+
+							if (aux->getId() == vertices->getDato()) {
+								int pesoNodo = nodoDato->getPesoAcumulado() + vertices->getPeso();
+								encontrado = true;
+								if (pesoNodo < aux->getPesoAcumulado()) {
+									aux->setPesoAcumulado(pesoNodo);
+									aux->setIteraciones(iteraciones);
+									aux->setPredecesor(nodoDato);
+								}
+							}
+							else {
+								aux = aux->getSiguiente();
+							}
+						}
+					}
+				}
+				vertices = vertices->getSiguiente();
+			}
+			if (lista->menor(temporales) != -1) {
+				Nodo* nodoFinal = lista->eliminar(temporales, lista->menor(temporales));
+				finales->insertarNodo(finales, nodoFinal);
+				lista->setVisitado(lista, nodoFinal->getId());
+				iteraciones++;
+				if (nodoFinal->getId() == y) {
+					fin = true;
+				}
+				else {
+					x = nodoFinal->getId();
+				}
+			}
+		}
+	}
+	return finales;
 }
