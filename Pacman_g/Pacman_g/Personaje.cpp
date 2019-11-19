@@ -1,7 +1,7 @@
 #include "Personaje.h"
 
 Personaje::Personaje(int vidas, int velocidad, string nombre, float x, float y, string ruta, float scaleX, float scaleY, bool comer)
-{//
+{
 	this->pix = 0;
 	this->piy = 0;
 	this->velocidad = velocidad;
@@ -549,8 +549,8 @@ void Personaje::fElegirMovimiento(Nodo*& camino)
 {
 	
 	if (camino != NULL) {
-		cout << "Nodox: " << camino->getPx();		cout << "-----NodoY: " << camino->getPy() << endl;
-		cout << "FantasmaX: " << sprite->getPosition().x << "-----FantasmaY: " << sprite->getPosition().y << endl;
+		//cout << "Nodox: " << camino->getPx();		cout << "-----NodoY: " << camino->getPy() << endl;
+		//cout << "FantasmaX: " << sprite->getPosition().x << "-----FantasmaY: " << sprite->getPosition().y << endl;
 
 		
 		if (camino->getPx() > sprite->getPosition().x) {
@@ -583,9 +583,6 @@ void Personaje::fElegirMovimiento(Nodo*& camino)
 
 		}
 
-	}
-	else {
-		cout << "NULOOOOO" << endl;
 	}
 
 }

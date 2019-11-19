@@ -1,7 +1,7 @@
 #include "Juego.h"
 #include <queue>
 Juego::Juego(Mapa* mapa, int lvl, string tema)
-{//
+{
 	cout << "Inicia Juego" << endl;
 	juegoIniciado = false;
 
@@ -862,18 +862,18 @@ void Juego::cambiarRutaFantasmas()
 	int idP = -1, idF = -1;
 
 	//buscar a fantasmas fatnasmas
-	for (int i = 0; i < 4; i++) {
-
+	for (int i = 0; i < 1; i++) {
+		
 		for (int f = 0; f < 21; f++) {
 
 			for (int c = 0; c < 19; c++) {
 
 				if (scenario[f][c] != NULL) {
 					//cout << "FX: " << fantasmas[i]->getX() << "FY: " << fantasmas[i]->getY() << endl;
-					if ((fantasmas[i]->getSprite()->getPosition().x < scenario[f][c]->getX() + (scenario[f][c]->getAncho() / 2))
-						&& fantasmas[i]->getSprite()->getPosition().x > scenario[f][c]->getX() - (scenario[f][c]->getAncho() / 2)
-						&& fantasmas[i]->getSprite()->getPosition().y < scenario[f][c]->getY() + (scenario[f][c]->getAlto() / 2)
-						&& fantasmas[i]->getSprite()->getPosition().y > scenario[f][c]->getY() - (scenario[f][c]->getAlto() / 2)) {
+					if ((fantasmas[i]->getSprite()->getPosition().x < scenario[f][c]->getX() + 3/*(scenario[f][c]->getAncho() / 2)*/)
+						&& fantasmas[i]->getSprite()->getPosition().x > scenario[f][c]->getX() - 3/*(scenario[f][c]->getAncho() / 2)*/
+						&& fantasmas[i]->getSprite()->getPosition().y < scenario[f][c]->getY() + 3/*(scenario[f][c]->getAlto() / 2) - 5*/
+						&& fantasmas[i]->getSprite()->getPosition().y > scenario[f][c]->getY() - 3/*(scenario[f][c]->getAlto() / 2) + 5*/) {
 						cout << "Fantasma en Vertice::::::" << c << " , " << f << endl;
 						//aqui valida las posiciones de los vertices y de los fantasmas
 						for (int i = 0; i < mapa->getTamGrafo(); i++) {
@@ -915,9 +915,12 @@ void Juego::cambiarRutaFantasmas()
 
 		}
 
+		
+
 		if ((idP != -1 && idF != -1)) {
-			//cout << "idP:   " << idP << endl;
-			//cout << "idF:   " << idF << endl;
+			cout << "idP:   " << idP << endl;
+			cout << "idF:   " << idF << endl;
+			
 			camino->cambiarVisitados(lista);//////////////////////////////////////////7
 			camino = dijkstra(lista, idP, idF);
 			//cout << endl << endl << "OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl;
@@ -943,6 +946,7 @@ void Juego::cambiarRutaFantasmas()
 			}*/
 			//cout << "OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl << endl << endl;
 			camino = camino->getPredecesor();
+			//cout << "idFSig:   " << camino->getId() << endl;
 			/*if (fantasmas[i]->fMoverFantasma(camino) == true) {
 
 				camino = camino->getPredecesor();
@@ -958,6 +962,38 @@ void Juego::cambiarRutaFantasmas()
 
 		fantasmas[i]->fElegirMovimiento(camino);
 		fantasmas[i]->fMoverFantasma(camino);
+
+
+
+
+		if (fantasmas[i]->getSprite()->getPosition().x > 810) {
+
+			fantasmas[i]->getSprite()->setPosition(-1, fantasmas[i]->getSprite()->getPosition().y);
+
+		}
+		else if (fantasmas[i]->getSprite()->getPosition().x < -10) {
+
+			fantasmas[i]->getSprite()->setPosition(801, fantasmas[i]->getSprite()->getPosition().y);
+
+		}
+		if (fantasmas[i]->getSprite()->getPosition().y > 730) {
+
+			fantasmas[i]->getSprite()->setPosition(fantasmas[i]->getSprite()->getPosition().x, -1);
+
+		}
+		else if (fantasmas[i]->getSprite()->getPosition().y < -10) {
+
+			fantasmas[i]->getSprite()->setPosition(fantasmas[i]->getSprite()->getPosition().x, 721);
+
+		}/**/
+
+
+
+
+
+
+
+
 
 		/*while (camino != NULL) {
 			if (camino->getPredecesor() != NULL) {
