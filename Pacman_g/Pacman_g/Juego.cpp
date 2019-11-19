@@ -911,8 +911,8 @@ void Juego::cambiarRutaFantasmas()
 		}
 
 		if ((idP != -1 && idF != -1)) {
-			cout << "idP:   " << idP << endl;
-			cout << "idF:   " << idF << endl;
+			//cout << "idP:   " << idP << endl;
+			//cout << "idF:   " << idF << endl;
 			camino->cambiarVisitados(lista);//////////////////////////////////////////7
 			camino = dijkstra(lista, idP, idF);
 			//cout << endl << endl << "OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl;
@@ -938,8 +938,6 @@ void Juego::cambiarRutaFantasmas()
 			}*/
 			//cout << "OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl << endl << endl;
 			camino = camino->getPredecesor();
-			fantasmas[i]->fElegirMovimiento(camino);
-			fantasmas[i]->fMoverFantasma(camino);
 			/*if (fantasmas[i]->fMoverFantasma(camino) == true) {
 
 				camino = camino->getPredecesor();
@@ -947,7 +945,14 @@ void Juego::cambiarRutaFantasmas()
 
 			}*/
 		}
+		else {
 
+			camino = NULL;
+
+		}
+
+		fantasmas[i]->fElegirMovimiento(camino);
+		fantasmas[i]->fMoverFantasma(camino);
 
 		/*while (camino != NULL) {
 			if (camino->getPredecesor() != NULL) {
