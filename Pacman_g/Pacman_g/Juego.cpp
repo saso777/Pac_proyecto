@@ -79,10 +79,12 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	lista = mapa->getListaAdyacencia();
 	cout << "\n\nLISTA DE ADYANCECIA\n\n";
 	mapa->getListaAdyacencia()->mostrarLista(lista);
+	
 	camino = NULL; ///////////////////777
-	crearFloyd();
+	
 	cout << "\n\nLISTA DE ADYANCECIA\n\n";
-
+	crearFloyd();
+	Floyd(mapa->getGrafo(0), mapa->getGrafo(16));
 	/*
 	camino = dijkstra(lista, 0, 5);
 	
@@ -1058,13 +1060,20 @@ Nodo* Juego::Floyd(Nodo* inicio, Nodo* finals)
 	Nodo* lista = inicio;
 	int ini = mapa->getGrafo(inicio->getX(), inicio->getY());
 	int fin = mapa->getGrafo(finals->getX(), finals->getY());
-	RecRutaFloyd(ini, fin, lista);
 	Nodo* aux = lista;
-	while (aux != NULL) {
-		cout << lista->getId() << " -> ";
+	RecRutaFloyd(ini, fin, aux);
+	while (aux->getSiguiente()!=NULL) {
 		aux = aux->getSiguiente();
 	}
-	return NULL;//puse desto aqui porque no me dejaba compiliar
+	aux->setSiguiente(finals);
+	aux = lista;
+	while (aux != NULL) {
+		cout << aux->getId() << " -> ";
+		cout << "info del grafo " << endl;
+		cout << "x del nodo: " << aux->getX() << " y del nodo: " << aux->getY()<<endl;
+		aux = aux->getSiguiente();
+	}
+	return lista;
 }
 
 void Juego::RecRutaFloyd(int i, int j, Nodo* lista)
