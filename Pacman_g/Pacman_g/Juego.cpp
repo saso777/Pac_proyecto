@@ -965,22 +965,22 @@ void Juego::cambiarRutaFantasmas()
 
 		if (fantasmas[i]->getSprite()->getPosition().x > 810) {
 
-			fantasmas[i]->getSprite()->setPosition(-5, fantasmas[i]->getSprite()->getPosition().y);
+			fantasmas[i]->getSprite()->setPosition(-1, fantasmas[i]->getSprite()->getPosition().y);
 
 		}
 		else if (fantasmas[i]->getSprite()->getPosition().x < -10) {
 
-			fantasmas[i]->getSprite()->setPosition(805, fantasmas[i]->getSprite()->getPosition().y);
+			fantasmas[i]->getSprite()->setPosition(801, fantasmas[i]->getSprite()->getPosition().y);
 
 		}
 		if (fantasmas[i]->getSprite()->getPosition().y > 730) {
 
-			fantasmas[i]->getSprite()->setPosition(fantasmas[i]->getSprite()->getPosition().x, -5);
+			fantasmas[i]->getSprite()->setPosition(fantasmas[i]->getSprite()->getPosition().x, -1);
 
 		}
 		else if (fantasmas[i]->getSprite()->getPosition().y < -10) {
 
-			fantasmas[i]->getSprite()->setPosition(fantasmas[i]->getSprite()->getPosition().x, 725);
+			fantasmas[i]->getSprite()->setPosition(fantasmas[i]->getSprite()->getPosition().x, 721);
 
 		}/**/
 
