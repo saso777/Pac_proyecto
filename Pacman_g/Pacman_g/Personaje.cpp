@@ -540,3 +540,34 @@ void Personaje::moverPersonaje(Boton* scenario[21][19], int& ptsTotal, int& pacd
 	revisarPosicion(scenario, (velocidad * movH), (velocidad * movV), "Detener", ptsTotal, pacdots, fantasmasMuertos, vidas, vidasPerdias, fantasmas);
 
 }
+
+void Personaje::fElegirMovimiento(Nodo* camino)
+{
+
+	if (camino->getPx() > sprite->getPosition().x) {
+
+		movH = 1;
+
+	}
+	else if(camino->getPx() < sprite->getPosition().x){
+
+		movH = -1;
+
+	}
+	else if (camino->getPy() > sprite->getPosition().y) {
+
+		movV = 1;
+
+	}
+	else if (camino->getPy() < sprite->getPosition().y) {
+
+		movV = -1;
+
+	}
+	else {
+
+		movH = 0;	movV = 0;
+
+	}
+
+}

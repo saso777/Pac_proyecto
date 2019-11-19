@@ -782,13 +782,12 @@ Nodo* Juego::dijkstra(Nodo*& lista, int x, int y) {
 
 	int peso = 0;
 	int iteraciones = 1;
-
-	cout << "juaj" << endl << endl << endl;////////////////////////////////////////////////////////////////////////////
 	finales->insertarNodo(finales, finales->getNodoDato(lista, x));
 	temporales->setVisitado(lista, x);
 	bool fin = false;
 	if (x != y) {
 		while (!fin) {
+
 			Nodo* nodoDato = lista->getNodoDato(finales, x);
 			Nodo* nodoDato1 = lista->getNodoDato(lista, x);
 			Vertice* vertices = nodoDato1->getVertices();
@@ -832,6 +831,7 @@ Nodo* Juego::dijkstra(Nodo*& lista, int x, int y) {
 				finales->insertarNodo(finales, nodoFinal);
 				lista->setVisitado(lista, nodoFinal->getId());
 				iteraciones++;
+				cout << "juaj" << endl << endl << endl;////////////////////////////////////////////////////////////////////////////
 				if (nodoFinal->getId() == y) {
 					fin = true;
 				}
@@ -879,7 +879,7 @@ void Juego::cambiarRutaFantasmas()
 
 										idP = mapa->getGrafo(i)->getId();
 										cout << idP << endl << endl;
-										cout << mapa->getGrafo(i)->getPesoIzq() << endl << endl;
+										cout <<"PESO_ARRIBA:" << mapa->getGrafo(i)->getPesoAr() << endl << endl;
 
 									}
 
@@ -887,9 +887,10 @@ void Juego::cambiarRutaFantasmas()
 								idF = mapa->getGrafo(i)->getId();
 								//buscar a fantasmas fantasmas
 
-								if ((idP && idF) > -1) {
-
-									//camino = dijkstra(lista, idP, idF);
+								if ((idP != -1 && idF != -1)) {
+									cout << "idP:   " << idP << endl; 
+									cout << "idF:   " << idF << endl;
+									//camino = dijkstra(lista, 24, 29);
 									
 								}
 								

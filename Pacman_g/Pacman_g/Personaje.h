@@ -1,5 +1,6 @@
 #pragma once
 #include "Boton.h"
+#include "Nodo.h"
 #include<iostream>
 #include<SFML/Graphics.hpp>
 using namespace std;
@@ -81,7 +82,7 @@ public:
 	//metodos propios
 
 	//REFERENCTE A LOS FANTASMAS
-	void fElegirCamino(/*Nodo* camino*/);//se recive el nodo se obtiene sus coordenadas y se madna a mover fantasma
+	void fElegirMovimiento(Nodo* camino);//se recive el nodo se obtiene sus coordenadas y se madna a mover fantasma en la direccion indicada, reajsta ubicacion.
 	void fMoverFantasma(int posx, int posy);//x futura y Y futura
 	void fReajustarPosicion(int fx, int fy);//se procede a reajustar las distancia entre el fantasma y el nodo
 	//REFERENTE A LOS FANTASMAS
