@@ -81,13 +81,13 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	mapa->getListaAdyacencia()->mostrarLista(lista);
 	cout << "\n\nLISTA DE ADYANCECIA\n\n";
 
-	//camino = dijkstra(lista, 47, 29);
-	/*
+	camino = dijkstra(lista, 0, 6);
+	
 	while (camino->getSiguiente() != NULL) {
 		camino = camino->getSiguiente();
 	}
 	int peso = camino->getPesoAcumulado();
-	*/
+	
 	cout << "RUTA MAS CORTA\n";
 	while (camino != NULL) {
 		if (camino->getPredecesor() != NULL) {

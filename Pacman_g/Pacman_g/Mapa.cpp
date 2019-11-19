@@ -248,11 +248,19 @@ int** Mapa::generaMatrizDeAdyacencia() {
 			matriz[i][fix] = grafo[i]->getPesoAb();
 		}
 		if (grafo[i]->getPesoDer() != 0&& grafo[i]->getPesoDer() != 1000) {
-			fix = getGrafo(grafo[i]->getX() + grafo[i]->getPesoDer(), grafo[i]->getY());
+			if (grafo[i]->getX() + grafo[i]->getPesoDer() < 19) {
+				fix = getGrafo(grafo[i]->getX() + grafo[i]->getPesoDer(), grafo[i]->getY());
+			}else {
+				fix = getGrafo((grafo[i]->getX() + grafo[i]->getPesoDer()) - 19, grafo[i]->getY());
+			}
 			matriz[i][fix] = grafo[i]->getPesoDer();
 		}
 		if (grafo[i]->getPesoIzq() != 0&& grafo[i]->getPesoIzq() != 1000) {
-			fix = getGrafo(grafo[i]->getX() - grafo[i]->getPesoIzq(), grafo[i]->getY());
+			if (grafo[i]->getX() - grafo[i]->getPesoIzq() > 0) {
+				fix = getGrafo(grafo[i]->getX() - grafo[i]->getPesoIzq(), grafo[i]->getY());
+			}else {
+				fix = getGrafo((grafo[i]->getX() - grafo[i]->getPesoIzq()) + 19, grafo[i]->getY());
+			}
 			int temporal = grafo[i]->getPesoIzq();
 			matriz[i][fix] = temporal;
 		}
