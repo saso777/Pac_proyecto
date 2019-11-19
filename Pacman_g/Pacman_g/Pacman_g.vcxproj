@@ -141,6 +141,7 @@
     <ClCompile Include="Pantalla_Lvl.cpp" />
     <ClCompile Include="Personaje.cpp" />
     <ClCompile Include="TextField.cpp" />
+    <ClCompile Include="Vertice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Boton.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Pantalla_Lvl.h" />
     <ClInclude Include="Personaje.h" />
     <ClInclude Include="TextField.h" />
+    <ClInclude Include="Vertice.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

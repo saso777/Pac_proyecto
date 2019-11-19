@@ -149,7 +149,7 @@ void Mapa::inicializarGrafo()
 
 	for (int i = 0; i < 21; i++) {
 		for (int j = 0; j < 19; j++) {
-			if (letras[i][j] == '#' || letras[i][j] == '4' || letras[i][j] == '$') {
+			if (letras[i][j] == '#' || letras[i][j] == '4' || letras[i][j] == '$' || letras[i][j] == 'f') {
 				contNodos++;
 			}
 		}
@@ -164,7 +164,7 @@ void Mapa::inicializarGrafo()
 	contNodos = 0;
 	for (int i = 0; i < 21; i++) {
 		for (int j = 0; j < 19; j++) {
-			if (letras[i][j] == '#' || letras[i][j] == '4' || letras[i][j] == '$') {
+			if (letras[i][j] == '#' || letras[i][j] == '4' || letras[i][j] == '$' || letras[i][j] == 'f') {
 				Nodo* nodo = new Nodo();
 				nodo->setId(id);
 				nodo->setX(j);
@@ -283,8 +283,13 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 	if (xx > 0) {
 		xx = xx - 1;
 		while (letras[yy][xx] != 'x') {
+			if (letras[yy][xx] == ' ') {
 
-			if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$') {
+				cont = 1000;
+				break;
+
+			}
+			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' ) {
 				xx--;
 				cont++;
 			}
@@ -307,7 +312,13 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 	if (xx < 19) {
 		xx = xx + 1;
 		while (letras[yy][xx] != 'x') {
-			if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$') {
+			if (letras[yy][xx] == ' ') {
+
+				cont = 1000;
+				break;
+
+			}
+			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' && letras[yy][xx] != ' ') {
 				xx++;
 				cont++;
 			}
@@ -327,7 +338,18 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 		yy = yy - 1;
 		while (letras[yy][xx] != 'x') {
 
-			if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$') {
+			if (letras[yy][xx] == ' ') {
+
+				cont = 1000;
+				break;
+
+			}
+			else if (letras[yy][xx] == ' ') {
+
+				break;
+
+			}
+			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' && letras[yy][xx] != ' ') {
 				yy--;
 				cont++;
 			}
@@ -349,7 +371,13 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 		yy = yy + 1;
 		while (letras[yy][xx] != 'x') {
 
-			if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$') {
+			if (letras[yy][xx] == ' ') {
+
+				cont = 1000;
+				break;
+
+			}
+			else if(letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' && letras[yy][xx] != ' ') {
 				yy++;
 				cont++;
 			}
