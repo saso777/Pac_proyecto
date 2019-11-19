@@ -879,7 +879,8 @@ void Juego::cambiarRutaFantasmas()
 
 										idP = mapa->getGrafo(i)->getId();
 										cout << idP << endl << endl;
-										cout <<"PESO_ARRIBA:" << mapa->getGrafo(i)->getPesoAr() << endl << endl;
+										cout <<"PESO_IZQUIERDAA:" << mapa->getGrafo(i)->getPesoIzq() << endl;
+										cout << "PESO_DERECHAA:" << mapa->getGrafo(i)->getPesoIzq() << endl << endl;
 
 									}
 

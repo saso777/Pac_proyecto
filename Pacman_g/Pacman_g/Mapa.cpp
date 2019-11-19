@@ -182,7 +182,7 @@ void Mapa::inicializarGrafo()
 
 
 	tamGrafo = contNodos;
-	for (int i = 0; i < tamGrafo; i++) {
+	/*for (int i = 0; i < tamGrafo; i++) {
 		cout << "nodo numero " << i << endl;
 		cout << "  x = " << grafo[i]->getX() << endl;
 		cout << "  Y = " << grafo[i]->getY() << endl;
@@ -192,7 +192,7 @@ void Mapa::inicializarGrafo()
 		cout << "  peso derecha = " << grafo[i]->getPesoDer() << endl;
 		cout << grafo[i]->getX()<< " " << grafo[i]->getY() << " " << grafo[i]->getPesoDer() << " " << grafo[i]->getId() << endl;
 
-	}
+	}*/
 }
 int Mapa::getGrafo(int x, int y) {
 	for (int i = 0; i < tamGrafo; i++) {
@@ -274,7 +274,7 @@ int** Mapa::generaMatrizDeAdyacencia() {
 
 
 
-void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
+/*void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 {
 
 	int cont, xx = x, yy = y;
@@ -293,22 +293,26 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 				xx--;
 				if (xx < 0) {
 					xx = 18;
+					cout << "PASO:" << xx << endl;
 					//cont = 0;
 				}
 				//else {
 					cont++;
 				//}
-				
+					cout << "SIGUE:" << xx << endl;
 			}
 			else {
 				xx--;
 				if (xx < 0) {
 					xx = 18;
+
 					//cont = 0;
 				}
 				//else {
 					cont++;
 				//}
+
+				cout << "NODO ENCONTRADO EN X:" << xx << endl;
 				break;
 			}
 
@@ -335,11 +339,13 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 				xx++; 
 				if (xx > 18) {
 					xx = 0;
+					cout << "PASO:" << xx << endl;
 					//cont = 0;
 				}
 				//else {
 					cont++;
 				//}
+					cout << "SIGUE:" << xx << endl;
 			}
 			else {
 				xx++;
@@ -349,6 +355,7 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 				}
 				//else {
 					cont++;
+					cout << "NODO ENCONTRADO EN X:" << xx << endl;
 				//}
 				break;
 			}
@@ -378,11 +385,14 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 				yy--;
 				if (yy < 0) {
 					yy = 20;
+					cout << "PASO:" << yy << endl;
 					//cont = 0;
 				}
 				//else {
 					cont++;
 				//}
+				cout << "SIGUE:" << yy << endl;
+				
 			}
 			else {
 				yy--;
@@ -392,6 +402,7 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 				}
 				//else {
 					cont++;
+					cout << "NODO ENCONTRADO EN Y:" << yy << endl;
 				//}
 				break;
 			}
@@ -417,11 +428,13 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 				yy++;
 				if (yy > 20	) {
 					yy = 0;
+					cout << "PASO:" << yy << endl;
 					//cont = 0;
 				}
 				//else {
 					cont++;
 				//}
+					cout << "SIGUE:" << yy << endl;
 			}
 			else {
 				yy++;
@@ -431,6 +444,7 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 				}
 				//else {
 					cont++;
+					cout << "NODO ENCONTRADO EN Y:" << yy << endl;
 				//}
 				break;
 			}
@@ -447,7 +461,147 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 	cout << "Nodos A Derecha: " << nodo->getPesoDer() << endl;
 	cout << "Nodos A Arriba: " << nodo->getPesoAr() << endl;
 	cout << "Nodos A Abajo: " << nodo->getPesoAb() << endl;*/
+/*}*/
+
+
+
+void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
+{
+
+	int cont, xx = x, yy = y;
+	//verificar si tiene nodo a la izquierda
+	cont = 0;
+	if (xx > 0) {
+		xx = xx - 1;
+		while (letras[yy][xx] != 'x') {
+			if (letras[yy][xx] == ' ') {
+
+				cont = 0;
+				break;
+
+			}
+			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$') {
+				xx--;
+				cont++;
+				cout << "SIGUE:" << xx << endl;
+			}
+			else {
+				xx--;
+				cont++;
+				cout << "NODO ENCONTRADO EN X:" << xx << endl;
+				break;
+			}
+
+
+
+		}
+		nodo->setPesoIzq(cont);
+	}
+
+
+	//verificar si tiene nodo a la derecha
+	cont = 0;
+	xx = x; yy = y;
+	if (xx < 19) {
+		xx = xx + 1;
+		while (letras[yy][xx] != 'x') {
+			if (letras[yy][xx] == ' ') {
+
+				cont = 0;
+				break;
+
+			}
+			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' && letras[yy][xx] != ' ') {
+				xx++;
+				cont++;
+				cout << "SIGUE:" << xx << endl;
+			}
+			else {
+				xx++;
+				cont++;
+				cout << "NODO ENCONTRADO EN X:" << xx << endl;
+				break;
+			}
+		}
+		nodo->setPesoDer(cont);
+	}
+
+	//verificar si tiene nodo arriba
+	cont = 0;
+	xx = x; yy = y;
+	if (yy > 0) {
+		yy = yy - 1;
+		while (letras[yy][xx] != 'x') {
+
+			if (letras[yy][xx] == ' ') {
+
+				cont = 0;
+				break;
+
+			}
+			else if (letras[yy][xx] == ' ') {
+
+				break;
+
+			}
+			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' && letras[yy][xx] != ' ') {
+				yy--;
+				cont++;
+				cout << "SIGUE:" << yy << endl;
+			}
+			else {
+				yy--;
+				cont++;
+				cout << "NODO ENCONTRADO EN Y:" << yy << endl;
+				break;
+			}
+
+		}
+		nodo->setPesoAr(cont);
+	}
+
+	//verificar si tiene nodo abajo
+	cont = 0;
+	xx = x; yy = y;
+	if (yy < 21) {
+		yy = yy + 1;
+		while (letras[yy][xx] != 'x') {
+
+			if (letras[yy][xx] == ' ') {
+
+				cont = 0;
+				break;
+
+			}
+			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' && letras[yy][xx] != ' ') {
+				yy++;
+				cont++;
+				cout << "SIGUE:" << yy << endl;
+			}
+			else {
+				yy++;
+				cont++;
+				cout << "NODO ENCONTRADO EN Y:" << yy << endl;
+				break;
+			}
+
+
+		}
+
+		nodo->setPesoAb(cont);
+	}
+	////////////////////////BORRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR/////////
+	/*cout << "Ubicacion X: " << x << " - Ubicacion Y:" << y << endl;
+	cout << "Ubicacion PX:" << nodo->getPx() << " - Ubicacion PY: " << nodo->getPy() << endl;
+	cout << "Nodos A izquierda: " << nodo->getPesoIzq() << endl;
+	cout << "Nodos A Derecha: " << nodo->getPesoDer() << endl;
+	cout << "Nodos A Arriba: " << nodo->getPesoAr() << endl;
+	cout << "Nodos A Abajo: " << nodo->getPesoAb() << endl;*/
 }
+
+
+
+
 
 Nodo* Mapa::getListaAdyacencia() {
 	return listaAdyacencia;
