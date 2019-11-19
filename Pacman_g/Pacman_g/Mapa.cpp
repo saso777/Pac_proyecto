@@ -239,20 +239,28 @@ int** Mapa::generaMatrizDeAdyacencia() {
 	//aca se setean todos los datos
 	for (int i = 0; i <tamGrafo; i++) {
 		
-		if(grafo[i]->getPesoAr() != 0) {
+		if(grafo[i]->getPesoAr() != 0&& grafo[i]->getPesoAr() != 1000) {
 			fix = getGrafo(grafo[i]->getX(), grafo[i]->getY() - grafo[i]->getPesoAr());
 			matriz[i][fix]=grafo[i]->getPesoAr();
 		}
-		if (grafo[i]->getPesoAb() != 0) {
+		if (grafo[i]->getPesoAb() != 0&& grafo[i]->getPesoAb() != 1000) {
 			fix = getGrafo(grafo[i]->getX(), grafo[i]->getY() + grafo[i]->getPesoAb());
 			matriz[i][fix] = grafo[i]->getPesoAb();
 		}
-		if (grafo[i]->getPesoDer() != 0) {
-			fix = getGrafo(grafo[i]->getX() + grafo[i]->getPesoDer(), grafo[i]->getY());
+		if (grafo[i]->getPesoDer() != 0&& grafo[i]->getPesoDer() != 1000) {
+			if (grafo[i]->getX() + grafo[i]->getPesoDer() < 19) {
+				fix = getGrafo(grafo[i]->getX() + grafo[i]->getPesoDer(), grafo[i]->getY());
+			}else {
+				fix = getGrafo((grafo[i]->getX() + grafo[i]->getPesoDer()) - 19, grafo[i]->getY());
+			}
 			matriz[i][fix] = grafo[i]->getPesoDer();
 		}
-		if (grafo[i]->getPesoIzq() != 0) {
-			fix = getGrafo(grafo[i]->getX() - grafo[i]->getPesoIzq(), grafo[i]->getY());
+		if (grafo[i]->getPesoIzq() != 0&& grafo[i]->getPesoIzq() != 1000) {
+			if (grafo[i]->getX() - grafo[i]->getPesoIzq() > 0) {
+				fix = getGrafo(grafo[i]->getX() - grafo[i]->getPesoIzq(), grafo[i]->getY());
+			}else {
+				fix = getGrafo((grafo[i]->getX() - grafo[i]->getPesoIzq()) + 19, grafo[i]->getY());
+			}
 			int temporal = grafo[i]->getPesoIzq();
 			matriz[i][fix] = temporal;
 		}
