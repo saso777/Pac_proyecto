@@ -1,7 +1,7 @@
 #include "Pantalla_Jugador.h"
 
 Pantalla_Jugador::Pantalla_Jugador()
-{
+{//
 	rw = new RenderWindow(VideoMode(800, 600), "Datos de Jugador");
 	rw->setFramerateLimit(20);
 	verTrofeos();

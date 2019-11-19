@@ -6,7 +6,7 @@
 using namespace std;
 using namespace sf;
 class Pantalla_Lvl
-{
+{//
 private:
 	int nivelesObtenidos;
 	RenderWindow* rw;

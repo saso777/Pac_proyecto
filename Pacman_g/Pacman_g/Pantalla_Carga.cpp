@@ -1,7 +1,7 @@
 #include "Pantalla_Carga.h"
 
 Pantalla_Carga::Pantalla_Carga()
-{
+{//
 	personaje = new Boton("", "", -200, 300, "Game_Files/Textures/Personajes/PAC_Perseguido.png", -200, 300, 0.3, 0.3);
 
 	mV = 0;	mH = 0;

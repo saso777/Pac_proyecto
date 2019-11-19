@@ -2,7 +2,7 @@
 
 Pantalla_GameOver::Pantalla_GameOver(bool final, int nivel, int& vidas, int vidasPerdidas, int fantasmasMuertos, int& ptsTotal, int tiempo)
 {
-
+	//
 	actualizarVecVidas();
 	textPtjTotal = NULL;
 

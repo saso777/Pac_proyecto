@@ -1,7 +1,7 @@
 #include "Mapa.h"
 
 Mapa::Mapa(int lvl)
-{
+{//
 	this->lvl = lvl;
 	tamGrafo = 0;
 	listaAdyacencia = NULL;

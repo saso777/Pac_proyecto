@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class Vertice {
+class Vertice {//
 	private:
 		Vertice* sig;
 		bool visitado;

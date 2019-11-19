@@ -7,7 +7,7 @@
 class Controller
 {
 private:
-
+	//
 	int rx, ry, fps;
 	RenderWindow* rw;
 	Pantalla_Lvl* pantallaLvl ;

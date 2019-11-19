@@ -7,7 +7,7 @@ using namespace std;
 using namespace sf;
 
 class Pantalla_Jugador
-{
+{//
 private:
 
 	RenderWindow* rw;

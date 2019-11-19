@@ -1,7 +1,7 @@
  #include "Controller.h"
 
 Controller::Controller()
-{
+{//
 	//carga de logo
 	Texture* t = new Texture();
 	if (t->loadFromFile("Game_Files/Textures/UI/Pacman_Logo.png")) {

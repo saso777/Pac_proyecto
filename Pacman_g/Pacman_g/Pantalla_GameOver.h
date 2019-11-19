@@ -5,7 +5,7 @@
 #include "SFML/Graphics.hpp"
 using namespace sf;
 class Pantalla_GameOver
-{
+{//
 private:
 
 	RenderWindow* rw;

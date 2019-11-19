@@ -5,7 +5,7 @@
 #include <sstream>
 using namespace std;
 class Mapa
-{
+{//
 private:
 	int lvl;
 	string ruta;

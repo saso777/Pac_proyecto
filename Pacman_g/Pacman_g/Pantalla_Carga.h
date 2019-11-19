@@ -4,7 +4,7 @@
 #include "SFML/Graphics.hpp"
 using namespace sf;
 class Pantalla_Carga
-{
+{//
 private:
 	int tiempo, progreso;
 

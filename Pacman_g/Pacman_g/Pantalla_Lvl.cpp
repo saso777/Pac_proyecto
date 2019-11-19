@@ -2,7 +2,7 @@
 
 Pantalla_Lvl::Pantalla_Lvl()
 {
-
+	//
 	pantallaCarga = NULL;
 	mapa = NULL;
 	juego = NULL;

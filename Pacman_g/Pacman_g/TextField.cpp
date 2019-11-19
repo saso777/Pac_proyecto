@@ -1,7 +1,7 @@
 #include "TextField.h"
 
 TextField::TextField(string txt, int tamMax, int x, int y, float alto, float ancho, bool lleno, string  urlSprt)
-{
+{//
 	//referente al cuadro de texto
 	this->lleno = lleno;
 	this->tamMax = tamMax;

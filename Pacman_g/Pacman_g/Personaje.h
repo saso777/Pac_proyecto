@@ -6,7 +6,7 @@
 using namespace std;
 using namespace sf;
 class Personaje
-{
+{//
 private:
 	int pix, piy;//punto inicial del personaje
 

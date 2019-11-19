@@ -1,7 +1,7 @@
 #include "Vertice.h"
 
 Vertice::Vertice()
-{
+{//
 	sig = NULL;
 	visitado = false;
 	peso = 0;

@@ -1,7 +1,7 @@
 #include "Boton.h"
 
 Boton::Boton(string accion, string texto, int x, int y, string url, float tx, float ty)
-{
+{//
 	this->x = 0; this->y = 0;
 	this->accion = accion;//para poder evaluar en los condicionales del controller;
 	this->texto = texto;//para agregarle al boton

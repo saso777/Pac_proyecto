@@ -8,7 +8,7 @@
 using namespace sf;
 using namespace std;
 class Juego
-{
+{//
 private:
 	bool juegoIniciado;
 

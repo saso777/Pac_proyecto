@@ -53,5 +53,5 @@ public:
 
 
 
-	bool ajustarBtnTexto();
+	bool ajustarBtnTexto();//
 };

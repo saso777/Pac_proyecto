@@ -1,7 +1,7 @@
 #pragma once
 #include "Vertice.h"
 class Nodo
-{
+{//
 private:
 	int id;
 	int x, y, pesoIzq, pesoDer, pesoAr, pesoAb, pesoAcumulado;
