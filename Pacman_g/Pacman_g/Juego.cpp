@@ -1,4 +1,5 @@
 #include "Juego.h"
+#include <queue>
 Juego::Juego(Mapa* mapa, int lvl, string tema)
 {//
 	cout << "Inicia Juego" << endl;
@@ -76,6 +77,7 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	//referente al escenario
 
 	matAd = mapa->generaMatrizDeAdyacencia(); //Matriz de adyacencia
+	
 	lista = mapa->getListaAdyacencia();
 	cout << "\n\nLISTA DE ADYANCECIA\n\n";
 	mapa->getListaAdyacencia()->mostrarLista(lista);
@@ -84,7 +86,8 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	
 	cout << "\n\nLISTA DE ADYANCECIA\n\n";
 	crearFloyd();
-	Floyd(mapa->getGrafo(0), mapa->getGrafo(16));
+	
+	Floyd(mapa->getGrafo(0), mapa->getGrafo(3));
 	/*
 	camino = dijkstra(lista, 0, 5);
 	
@@ -989,9 +992,25 @@ void Juego::crearFloyd()
 
 	for (int i = 0; i < mapa->getTamGrafo(); i++) {
 		for (int j = 0; j < mapa->getTamGrafo(); j++) {
-			matFloyd[i][j] = matAd[i][j];
+			if (j != i) {
+				if (matAd[i][j] == 0) {
+					matFloyd[i][j] = 999;
+				}else {
+					matFloyd[i][j] = matAd[i][j];
+				}
+			} else {
+				matFloyd[i][j] = matAd[i][j];
+			}
+			
 		}
+
 	}
+	//for (int i = 0; i < mapa->getTamGrafo(); i++) {
+	//	for (int j = 0; j < mapa->getTamGrafo(); j++) {
+	//		cout << matFloyd[i][j] << " ";
+	//	}
+	//	cout << endl;
+	//}
 	for (int i = 0; i < mapa->getTamGrafo(); i++) {
 		for (int j = 0; j < mapa->getTamGrafo(); j++) {
 			matRutas[j][i] = i;
@@ -1003,6 +1022,8 @@ void Juego::crearFloyd()
 		}
 		cout << endl;
 	}*/
+
+
 	for (int i = 0; i < mapa->getTamGrafo(); i++) {
 		for (int j = 0; j < mapa->getTamGrafo(); j++) {
 			for (int k = 0; k < mapa->getTamGrafo(); k++) {
@@ -1014,6 +1035,12 @@ void Juego::crearFloyd()
 			}
 		}
 	}
+	for (int i = 0; i < mapa->getTamGrafo()/2; i++) {
+		for (int j = 0; j < mapa->getTamGrafo()/2; j++) {
+			cout << matRutas[i][j] << " ";
+		}
+		cout << endl;
+	}
 
 
 
@@ -1021,32 +1048,47 @@ void Juego::crearFloyd()
 
 Nodo* Juego::Floyd(Nodo* inicio, Nodo* finals)
 {
-	Nodo* lista = inicio;
+	Nodo* lista = new Nodo(inicio);
 	int ini = mapa->getGrafo(inicio->getX(), inicio->getY());
 	int fin = mapa->getGrafo(finals->getX(), finals->getY());
-	Nodo* aux = lista;
-	RecRutaFloyd(ini, fin, aux);
-	while (aux->getSiguiente()!=NULL) {
-		aux = aux->getSiguiente();
-	}
-	aux->setSiguiente(finals);
-	aux = lista;
-	while (aux != NULL) {
-		cout << aux->getId() << " -> ";
+	queue<Nodo> aux;
+	//aux.push(lista);
+	RecRutaFloyd(ini, fin, &aux);
+	
+	aux.push(finals);
+	
+	//esta parte es para verificar funcionamiento
+	/*while (!aux.empty()) {
+		cout << aux.front().getId() << " -> ";
 		cout << "info del grafo " << endl;
-		cout << "x del nodo: " << aux->getX() << " y del nodo: " << aux->getY()<<endl;
-		aux = aux->getSiguiente();
+		cout << "x del nodo: " << aux.front().getX() << " y del nodo: " << aux.front().getY()<<endl;
+		aux.pop();
+	}*/ 
+	Nodo* auxiliar = lista;
+	while (!aux.empty()) {
+		
+		auxiliar->setSiguiente(new Nodo(aux.front()));
+		aux.pop();
+		auxiliar = auxiliar->getSiguiente();
 	}
+	while (lista!=NULL) {
+		cout << lista->getId();
+		lista = lista->getSiguiente();
+
+	}
+
 	return lista;
 }
 
-void Juego::RecRutaFloyd(int i, int j, Nodo* lista)
+void Juego::RecRutaFloyd(int i, int j, queue<Nodo>* lista)
 {
 		int temp = matRutas[i][j];
+		
 		if (temp != j) {
+			
 			RecRutaFloyd(i, temp,lista);
-			lista->setSiguiente(mapa->getGrafo(temp));//cout << letras[temp] << " -> ";
-			lista = lista->getSiguiente();
+			lista->push(mapa->getGrafo(temp));
+			
 			RecRutaFloyd(temp, j,lista);
 		}
 }

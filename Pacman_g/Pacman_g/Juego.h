@@ -5,6 +5,8 @@
 #include "Pantalla_GameOver.h"
 #include<iostream>
 #include<SFML/Graphics.hpp>
+#include <queue>
+
 using namespace sf;
 using namespace std;
 class Juego
@@ -153,7 +155,7 @@ public:
 	//metodo para  obtener la ruta entre 2 puntos Floyd
 	Nodo* Floyd(Nodo* inicio,Nodo* final);
 	//recuperar ruta 1Floyd
-	void RecRutaFloyd(int i, int j, Nodo* lista);
+	void RecRutaFloyd(int i, int j, queue<Nodo>* lista);
 	
 
 };
