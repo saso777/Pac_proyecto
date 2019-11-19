@@ -36,6 +36,8 @@ Nodo::Nodo(Nodo* nodo) {
 	predecesor = nodo->getPredecesor();
 	x = nodo->getX();
 	y = nodo->getY();
+	px = nodo->getPx();
+	py = nodo->getPy();
 	hayPacman = nodo->getHayPacman();
 	ocupado = nodo->isOcupado();
 }

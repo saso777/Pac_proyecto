@@ -90,7 +90,7 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	int peso = camino->getPesoAcumulado();
 	
 	cout << "RUTA MAS CORTA\n";
-	while (camino != NULL) {
+	/*while (camino != NULL) {
 		if (camino->getPredecesor() != NULL) {
 			cout << camino->getId() << "->"<<endl;
 			cout << "X: " << camino->getX() << " Y: " << camino->getY() << endl;
@@ -100,7 +100,7 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 			cout << "X: " << camino->getX() << " Y: " << camino->getY() << endl;
 		}
 		camino = camino->getPredecesor();
-	}
+	}*/
 	//cout << "\n\nCON PESO DE: " << peso << endl;
 
 
@@ -254,6 +254,7 @@ void Juego::gameLoop()
 		if (juegoIniciado == true) {
 
 			cambiarRutaFantasmas();
+			
 
 		}
 
@@ -804,6 +805,10 @@ Nodo* Juego::dijkstra(Nodo*& lista, int x, int y) {
 						nodo->setY(lista->getNodoDato(lista, vertices->getDato())->getY());
 						nodo->setPx(lista->getNodoDato(lista, vertices->getDato())->getPx());
 						nodo->setPy(lista->getNodoDato(lista, vertices->getDato())->getPy());
+
+						//cout << "NX:    " << lista->getNodoDato(lista, vertices->getDato())->getPx() << endl;
+						//cout << "NY:    " << nodo->getPy() << endl;
+
 						lista->insertarNodo(temporales, nodo);
 					}
 					else {
@@ -832,7 +837,6 @@ Nodo* Juego::dijkstra(Nodo*& lista, int x, int y) {
 				finales->insertarNodo(finales, nodoFinal);
 				lista->setVisitado(lista, nodoFinal->getId());
 				iteraciones++;
-				cout << "juaj" << endl << endl << endl;////////////////////////////////////////////////////////////////////////////
 				if (nodoFinal->getId() == y) {
 					fin = true;
 				}
@@ -849,9 +853,6 @@ void Juego::cambiarRutaFantasmas()
 {
 	
 	int idP = -1, idF = -1;
-	
-	
-
 
 	//buscar a fantasmas fatnasmas
 	for (int i = 0; i < 4; i++) {
@@ -866,7 +867,7 @@ void Juego::cambiarRutaFantasmas()
 						&& fantasmas[i]->getX() > scenario[f][c]->getX() - (scenario[f][c]->getAncho() / 2)
 						&& fantasmas[i]->getY() < scenario[f][c]->getY() + (scenario[f][c]->getAlto() / 2)
 						&& fantasmas[i]->getY() > scenario[f][c]->getY() - (scenario[f][c]->getAlto() / 2)) {
-						cout << "Fantasma en Vertice::::::" << c << " , " << f << endl;
+						//cout << "Fantasma en Vertice::::::" << c << " , " << f << endl;
 						//aqui valida las posiciones de los vertices y de los fantasmas
 						for (int i = 0; i < mapa->getTamGrafo(); i++) {
 
@@ -879,8 +880,9 @@ void Juego::cambiarRutaFantasmas()
 									if (mapa->getGrafo(i)->getHayPacman() == true) {
 
 										idP = mapa->getGrafo(i)->getId();
-										cout << idP << endl << endl;
-										cout <<"PESO_ARRIBA:" << mapa->getGrafo(i)->getPesoAr() << endl << endl;
+										//cout << idP << endl << endl;
+										//cout <<"PESO_IZQUIERDAA:" << mapa->getGrafo(i)->getPesoIzq() << endl;
+										//cout << "PESO_DERECHAA:" << mapa->getGrafo(i)->getPesoIzq() << endl << endl;
 
 									}
 
@@ -888,12 +890,7 @@ void Juego::cambiarRutaFantasmas()
 								idF = mapa->getGrafo(i)->getId();
 								//buscar a fantasmas fantasmas
 
-								if ((idP != -1 && idF != -1)) {
-									cout << "idP:   " << idP << endl; 
-									cout << "idF:   " << idF << endl;
-									//camino = dijkstra(lista, 24, 29);
-									
-								}
+								
 								
 								break;
 
@@ -908,7 +905,34 @@ void Juego::cambiarRutaFantasmas()
 
 		}
 
+		if ((idP != -1 && idF != -1)) {
+			//cout << "idP:   " << idP << endl;
+			//cout << "idF:   " << idF << endl;
+			//camino = dijkstra(lista, idP, idF);
+			camino->cambiarVisitados(lista);
+			camino = dijkstra(lista, idP, idF);
+		}
+
+
+		/*while (camino != NULL) {
+			if (camino->getPredecesor() != NULL) {
+				cout << camino->getId() << "->" << endl;
+				cout << "X: " << camino->getX() << " Y: " << camino->getY() << endl;
+			}
+			else {
+				cout << camino->getId() << endl;
+				cout << "X: " << camino->getX() << " Y: " << camino->getY() << endl;
+			}
+			camino = camino->getPredecesor();
+		}*/
+		fantasmas[i]->fElegirMovimiento(camino);
+		fantasmas[i]->fMoverFantasma();
+
 	}
+
+	
+	
+
 }
 
 void Juego::crearFloyd()

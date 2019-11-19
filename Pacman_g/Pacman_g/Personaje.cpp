@@ -541,38 +541,46 @@ void Personaje::moverPersonaje(Boton* scenario[21][19], int& ptsTotal, int& pacd
 
 }
 
-void Personaje::fElegirMovimiento(Nodo* camino)
+void Personaje::fElegirMovimiento(Nodo*& camino)
 {
+	
+	
 
-	if (camino->getPx() > sprite->getPosition().x) {
+	if (camino != NULL) {
+		cout << "Nodox: " << camino->getPx();		cout << "-----NodoY: " << camino->getPy() << endl;
+		//cout << "jojo" << endl;
+		if (camino->getPx() > sprite->getPosition().x) {
+			//cout << "Derecha:" << endl;
+			movH = 1;
 
-		movH = 1;
+		}
+		else if (camino->getPx() < sprite->getPosition().x) {
+			//cout << "Izquierda:" << endl;
+			movH = -1;
 
-	}
-	else if(camino->getPx() < sprite->getPosition().x){
+		}
+		else if (camino->getPy() > sprite->getPosition().y) {
+			//cout << "Abajo:" << endl;
+			movV = 1;
 
-		movH = -1;
+		}
+		else if (camino->getPy() < sprite->getPosition().y) {
+			//cout << "Arriba:" << endl;
+			movV = -1;
 
-	}
-	else if (camino->getPy() > sprite->getPosition().y) {
+		}
+		else {
 
-		movV = 1;
+			camino = camino->getPredecesor();
+			movH = 0;	movV = 0;
 
-	}
-	else if (camino->getPy() < sprite->getPosition().y) {
-
-		movV = -1;
-
-	}
-	else {
-
-		movH = 0;	movV = 0;
+		}
 
 	}
 
 }
 
-void Personaje::fMoverFantasma(int posx, int posy)
+void Personaje::fMoverFantasma(/*int posx, int posy*/)
 {
 
 	if (sprite != NULL) {
