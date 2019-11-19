@@ -3,17 +3,17 @@ x#11#111#x#111#11#x
 x0xx1xxx1x1xxx1xx0x
 x#11#1#1#1#1#1#11#x
 x1xx1x1xxxxx1x1xx1x
-x#11#x111x111x#11#x
+x#11#x#1#x#1#x#11#x
 xxxx1xxx.x.xxx1xxxx
 ...x1x4.4.4.4x1x...
 xxxx1x.xx"xx.x1xxxx
-....#.4x.f.x4.#....
+....#.4x f x4.#....
 xxxx1x.xxxxx.x1xxxx
 ...x1x4.....4x1x...
 xxxx1x.xxxxx.x1xxxx
 x#11#.4.4x4.4.#11#x
 x1xx1xxx.x.xxx1xx1x
-x$#x#1#11p11#1#x#$x
+x$#x#1#1#p#1#1#x#$x
 xx1x1x1xxxxx1x1x1xx
 x##1#x#1#x#1#x#1##x
 x1xxxxxx1x1xxxxxx1x

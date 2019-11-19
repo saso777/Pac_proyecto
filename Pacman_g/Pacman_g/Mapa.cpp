@@ -5,6 +5,7 @@ Mapa::Mapa(int lvl)
 	this->lvl = lvl;
 	tamGrafo = 0;
 	listaAdyacencia = NULL;
+	grafo = NULL;
 	ruta = "Game_Files/Lvl/Maps/LVL_" + to_string(lvl) + ".txt";
 
 
