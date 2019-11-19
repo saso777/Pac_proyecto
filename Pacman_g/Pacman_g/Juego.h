@@ -150,6 +150,10 @@ public:
 
 	//metodo para crear las matriz floyd 
 	void crearFloyd();
-	//metdo para iniciar la matriz de rutas
+	//metodo para  obtener la ruta entre 2 puntos Floyd
+	Nodo* Floyd(Nodo* inicio,Nodo* final);
+	//recuperar ruta 1Floyd
+	void RecRutaFloyd(int i, int j, Nodo* lista);
+	
 
 };

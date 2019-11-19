@@ -32,4 +32,5 @@ public:
 	int getGrafo(int x,int y);
 	void generarListasAdyacencia(int** matriz);
 
+
 };

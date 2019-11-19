@@ -973,4 +973,32 @@ void Juego::crearFloyd()
 			}
 		}
 	}
+
+
+
 }
+
+Nodo* Juego::Floyd(Nodo* inicio, Nodo* finals)
+{
+	Nodo* lista = inicio;
+	int ini = mapa->getGrafo(inicio->getX(), inicio->getY());
+	int fin = mapa->getGrafo(finals->getX(), finals->getY());
+	RecRutaFloyd(ini, fin, lista);
+	Nodo* aux = lista;
+	while (aux != NULL) {
+		cout << lista->getId() << " -> ";
+		aux = aux->getSiguiente();
+	}
+}
+
+void Juego::RecRutaFloyd(int i, int j, Nodo* lista)
+{
+		int temp = matRutas[i][j];
+		if (temp != j) {
+			RecRutaFloyd(i, temp,lista);
+			lista->setSiguiente(mapa->getGrafo(temp));//cout << letras[temp] << " -> ";
+			lista = lista->getSiguiente();
+			RecRutaFloyd(temp, j,lista);
+		}
+}
+
