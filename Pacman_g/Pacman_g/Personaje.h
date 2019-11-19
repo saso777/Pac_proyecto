@@ -82,8 +82,8 @@ public:
 	//metodos propios
 
 	//REFERENCTE A LOS FANTASMAS
-	void fElegirMovimiento(Nodo* camino);//se recive el nodo se obtiene sus coordenadas y se madna a mover fantasma en la direccion indicada, reajsta ubicacion.
-	void fMoverFantasma(int posx, int posy);//x futura y Y futura
-	void fReajustarPosicion(int fx, int fy);//se procede a reajustar las distancia entre el fantasma y el nodo
+	void fElegirMovimiento(Nodo*& camino);//se recive el nodo se obtiene sus coordenadas y se madna a mover fantasma en la direccion indicada, reajsta ubicacion.
+	void fMoverFantasma(Nodo*& camino);//x futura y Y futura
+	void fEvaluarPosFantasma(Nodo*& camino);//se procede a reajustar las distancia entre el fantasma y el nodo
 	//REFERENTE A LOS FANTASMAS
 };

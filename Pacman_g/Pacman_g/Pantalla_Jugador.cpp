@@ -199,3 +199,4 @@ void Pantalla_Jugador::guardarLineaTrofeo(int posicion, int ubicacionVec, int& x
 	}
 
 }
+

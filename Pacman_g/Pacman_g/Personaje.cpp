@@ -16,9 +16,13 @@ Personaje::Personaje(int vidas, int velocidad, string nombre, float x, float y, 
 		cout << x << " , " << y << endl;
 
 
-		sprite->setOrigin(sprite->getPosition().x + texture->getSize().x / 2, sprite->getPosition().y + texture->getSize().y / 2);
+		/*sprite->setOrigin(sprite->getPosition().x + texture->getSize().x / 2, sprite->getPosition().y + texture->getSize().y / 2);
 		sprite->setPosition(x + ((800 / 19) / 2), y + ((720 / 21) / 2));
-		sprite->setScale(scaleX, scaleY);
+		sprite->setScale(scaleX, scaleY);*/
+		
+		sprite->setOrigin(sprite->getPosition().x + (sprite->getGlobalBounds().width / 2), sprite->getPosition().y + (sprite->getGlobalBounds().height / 2));
+		sprite->scale(scaleX, scaleY);
+		sprite->setPosition(x + ((800 / 19) / 2), y + ((720 / 21) / 2));
 
 		piy = sprite->getPosition().y;
 		pix = sprite->getPosition().x;
@@ -548,45 +552,69 @@ void Personaje::fElegirMovimiento(Nodo*& camino)
 
 	if (camino != NULL) {
 		cout << "Nodox: " << camino->getPx();		cout << "-----NodoY: " << camino->getPy() << endl;
+		cout << "FantasmaX: " << sprite->getPosition().x << "-----FantasmaY: " << sprite->getPosition().y << endl;
+
 		//cout << "jojo" << endl;
 		if (camino->getPx() > sprite->getPosition().x) {
 			//cout << "Derecha:" << endl;
+			movV = 0;
 			movH = 1;
 
 		}
 		else if (camino->getPx() < sprite->getPosition().x) {
 			//cout << "Izquierda:" << endl;
+			movV = 0;
 			movH = -1;
 
 		}
 		else if (camino->getPy() > sprite->getPosition().y) {
 			//cout << "Abajo:" << endl;
+			movH = 0;
 			movV = 1;
-
 		}
 		else if (camino->getPy() < sprite->getPosition().y) {
 			//cout << "Arriba:" << endl;
+			movH = 0;
 			movV = -1;
 
 		}
 		else {
 
-			camino = camino->getPredecesor();
+			
 			movH = 0;	movV = 0;
 
 		}
 
 	}
+	else {
+		cout << "NULOOOOO" << endl;
+	}
 
 }
 
-void Personaje::fMoverFantasma(/*int posx, int posy*/)
+void Personaje::fMoverFantasma(Nodo*& camino)
 {
 
 	if (sprite != NULL) {
 		//antes de hacer movimiento evaluar si choca con pacman(tal vez) 
 		sprite->setPosition(sprite->getPosition().x + (velocidad * movH), sprite->getPosition().y + (velocidad * movV));
+		fEvaluarPosFantasma(camino);
 		//despues de hacer movimiento evaluar si choca con pacman(tal vez)  tambien...
 	}
 
+}
+
+void Personaje::fEvaluarPosFantasma(Nodo*& camino)
+{
+	if (camino != NULL) {
+
+		if (camino->getPx() == sprite->getPosition().x && camino->getPy() == sprite->getPosition().y) {
+
+			camino = camino->getPredecesor();
+			
+			cout << "HA LLEGAO" << endl;
+
+		}
+
+	}
 }

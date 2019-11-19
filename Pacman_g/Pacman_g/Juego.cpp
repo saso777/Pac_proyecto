@@ -79,10 +79,12 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	lista = mapa->getListaAdyacencia();
 	cout << "\n\nLISTA DE ADYANCECIA\n\n";
 	mapa->getListaAdyacencia()->mostrarLista(lista);
+	camino = NULL; ///////////////////777
 	crearFloyd();
 	cout << "\n\nLISTA DE ADYANCECIA\n\n";
 
-	camino = dijkstra(lista, 0, 6);
+	/*
+	camino = dijkstra(lista, 0, 5);
 	
 	while (camino->getSiguiente() != NULL) {
 		camino = camino->getSiguiente();
@@ -90,19 +92,19 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	int peso = camino->getPesoAcumulado();
 	
 	cout << "RUTA MAS CORTA\n";
-	/*while (camino != NULL) {
+	while (camino != NULL) {
 		if (camino->getPredecesor() != NULL) {
-			cout << camino->getId() << "->"<<endl;
+			cout << camino->getId() << "->" << endl;
 			cout << "X: " << camino->getX() << " Y: " << camino->getY() << endl;
 		}
 		else {
-			cout << camino->getId()<<endl;
+			cout << camino->getId() << endl;
 			cout << "X: " << camino->getX() << " Y: " << camino->getY() << endl;
 		}
 		camino = camino->getPredecesor();
-	}*/
+	}
 	//cout << "\n\nCON PESO DE: " << peso << endl;
-
+	*/
 
 
 
@@ -895,8 +897,14 @@ void Juego::cambiarRutaFantasmas()
 								break;
 
 							}
+							else {
+
+								idF = -1;
+
+							}
 
 						}
+						break;
 					}
 
 				}
@@ -908,9 +916,30 @@ void Juego::cambiarRutaFantasmas()
 		if ((idP != -1 && idF != -1)) {
 			//cout << "idP:   " << idP << endl;
 			//cout << "idF:   " << idF << endl;
-			//camino = dijkstra(lista, idP, idF);
-			camino->cambiarVisitados(lista);
+			camino->cambiarVisitados(lista);//////////////////////////////////////////7
 			camino = dijkstra(lista, idP, idF);
+			//cout << endl << endl << "OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl;
+
+			/*
+			while (camino != NULL) {
+				if (camino->getPredecesor() != NULL) {
+					cout << camino->getId() << "->" << endl;
+					cout << "X: " << camino->getX() << " Y: " << camino->getY() << endl;
+				}
+				else {
+					cout << camino->getId() << endl;
+					cout << "X: " << camino->getX() << " Y: " << camino->getY() << endl;
+				}
+				camino = camino->getPredecesor();
+				
+
+				cout << "OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl << endl << endl;
+
+				
+			}*/
+			//camino = camino->getPredecesor();
+			fantasmas[i]->fElegirMovimiento(camino);
+			fantasmas[i]->fMoverFantasma(camino);
 		}
 
 
@@ -925,8 +954,7 @@ void Juego::cambiarRutaFantasmas()
 			}
 			camino = camino->getPredecesor();
 		}*/
-		fantasmas[i]->fElegirMovimiento(camino);
-		fantasmas[i]->fMoverFantasma();
+		
 
 	}
 

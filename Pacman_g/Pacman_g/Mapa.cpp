@@ -170,8 +170,8 @@ void Mapa::inicializarGrafo()
 				nodo->setId(id);
 				nodo->setX(j);
 				nodo->setY(i);
-				nodo->setPx((800 / 19) * j + ((800 / 19) / 2));
-				nodo->setPy((720 / 21) * i + ((720 / 21) / 2));
+				nodo->setPx(((800 / 19) * j) + ((800 / 19) / 2));
+				nodo->setPy(((720 / 21) * i) + ((720 / 21) / 2));
 				clcPsNd(nodo, j, i);
 				grafo[contNodos] = nodo;
 				contNodos++;
