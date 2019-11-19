@@ -865,11 +865,11 @@ void Juego::cambiarRutaFantasmas()
 
 				if (scenario[f][c] != NULL) {
 					//cout << "FX: " << fantasmas[i]->getX() << "FY: " << fantasmas[i]->getY() << endl;
-					if ((fantasmas[i]->getX() < scenario[f][c]->getX() + (scenario[f][c]->getAncho() / 2))
-						&& fantasmas[i]->getX() > scenario[f][c]->getX() - (scenario[f][c]->getAncho() / 2)
-						&& fantasmas[i]->getY() < scenario[f][c]->getY() + (scenario[f][c]->getAlto() / 2)
-						&& fantasmas[i]->getY() > scenario[f][c]->getY() - (scenario[f][c]->getAlto() / 2)) {
-						//cout << "Fantasma en Vertice::::::" << c << " , " << f << endl;
+					if ((fantasmas[i]->getSprite()->getPosition().x < scenario[f][c]->getX() + (scenario[f][c]->getAncho() / 2))
+						&& fantasmas[i]->getSprite()->getPosition().x > scenario[f][c]->getX() - (scenario[f][c]->getAncho() / 2)
+						&& fantasmas[i]->getSprite()->getPosition().y < scenario[f][c]->getY() + (scenario[f][c]->getAlto() / 2)
+						&& fantasmas[i]->getSprite()->getPosition().y > scenario[f][c]->getY() - (scenario[f][c]->getAlto() / 2)) {
+						cout << "Fantasma en Vertice::::::" << c << " , " << f << endl;
 						//aqui valida las posiciones de los vertices y de los fantasmas
 						for (int i = 0; i < mapa->getTamGrafo(); i++) {
 
@@ -889,17 +889,14 @@ void Juego::cambiarRutaFantasmas()
 									}
 
 								}
+
 								idF = mapa->getGrafo(i)->getId();
+								//cout << idF << endl << endl;
 								//buscar a fantasmas fantasmas
 
 								
 								
 								break;
-
-							}
-							else {
-
-								idF = -1;
 
 							}
 
@@ -914,12 +911,14 @@ void Juego::cambiarRutaFantasmas()
 		}
 
 		if ((idP != -1 && idF != -1)) {
-			//cout << "idP:   " << idP << endl;
-			//cout << "idF:   " << idF << endl;
+			cout << "idP:   " << idP << endl;
+			cout << "idF:   " << idF << endl;
 			camino->cambiarVisitados(lista);//////////////////////////////////////////7
 			camino = dijkstra(lista, idP, idF);
 			//cout << endl << endl << "OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl;
-
+			while (camino->getSiguiente() != NULL) {
+				camino = camino->getSiguiente();
+			}
 			/*
 			while (camino != NULL) {
 				if (camino->getPredecesor() != NULL) {
@@ -933,13 +932,20 @@ void Juego::cambiarRutaFantasmas()
 				camino = camino->getPredecesor();
 				
 
-				cout << "OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl << endl << endl;
+				
 
 				
 			}*/
-			//camino = camino->getPredecesor();
+			//cout << "OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl << endl << endl;
+			camino = camino->getPredecesor();
 			fantasmas[i]->fElegirMovimiento(camino);
 			fantasmas[i]->fMoverFantasma(camino);
+			/*if (fantasmas[i]->fMoverFantasma(camino) == true) {
+
+				camino = camino->getPredecesor();
+				cout << "Cambio   " << camino->getId() << endl;
+
+			}*/
 		}
 
 
