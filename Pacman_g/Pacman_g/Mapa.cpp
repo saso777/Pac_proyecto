@@ -285,17 +285,30 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 		while (letras[yy][xx] != 'x') {
 			if (letras[yy][xx] == ' ') {
 
-				cont = 1000;
+				cont = 0;
 				break;
 
 			}
 			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' ) {
 				xx--;
-				cont++;
+				if (xx < 0) {
+					xx = 18;
+					//cont = 0;
+				}
+				//else {
+					cont++;
+				//}
+				
 			}
 			else {
 				xx--;
-				cont++;
+				if (xx < 0) {
+					xx = 18;
+					//cont = 0;
+				}
+				//else {
+					cont++;
+				//}
 				break;
 			}
 
@@ -314,17 +327,29 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 		while (letras[yy][xx] != 'x') {
 			if (letras[yy][xx] == ' ') {
 
-				cont = 1000;
+				cont = 0;
 				break;
 
 			}
 			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' && letras[yy][xx] != ' ') {
-				xx++;
-				cont++;
+				xx++; 
+				if (xx > 18) {
+					xx = 0;
+					//cont = 0;
+				}
+				//else {
+					cont++;
+				//}
 			}
 			else {
 				xx++;
-				cont++;
+				if (xx > 18) {
+					xx = 0;
+					//cont = 0;
+				}
+				//else {
+					cont++;
+				//}
 				break;
 			}
 		}
@@ -340,7 +365,7 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 
 			if (letras[yy][xx] == ' ') {
 
-				cont = 1000;
+				cont = 0;
 				break;
 
 			}
@@ -351,14 +376,25 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 			}
 			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' && letras[yy][xx] != ' ') {
 				yy--;
-				cont++;
+				if (yy < 0) {
+					yy = 20;
+					//cont = 0;
+				}
+				//else {
+					cont++;
+				//}
 			}
 			else {
 				yy--;
-				cont++;
+				if (yy < 0) {
+					yy = 20;
+					//cont = 0;
+				}
+				//else {
+					cont++;
+				//}
 				break;
 			}
-
 
 		}
 		nodo->setPesoAr(cont);
@@ -373,22 +409,35 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 
 			if (letras[yy][xx] == ' ') {
 
-				cont = 1000;
+				cont = 0;
 				break;
 
 			}
 			else if(letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' && letras[yy][xx] != ' ') {
 				yy++;
-				cont++;
+				if (yy > 20	) {
+					yy = 0;
+					//cont = 0;
+				}
+				//else {
+					cont++;
+				//}
 			}
 			else {
 				yy++;
-				cont++;
+				if (yy > 21) {
+					yy = 0;
+					//cont = 0;
+				}
+				//else {
+					cont++;
+				//}
 				break;
 			}
 
 
 		}
+
 		nodo->setPesoAb(cont);
 	}
 	////////////////////////BORRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR/////////

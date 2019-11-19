@@ -571,3 +571,14 @@ void Personaje::fElegirMovimiento(Nodo* camino)
 	}
 
 }
+
+void Personaje::fMoverFantasma(int posx, int posy)
+{
+
+	if (sprite != NULL) {
+		//antes de hacer movimiento evaluar si choca con pacman(tal vez) 
+		sprite->setPosition(sprite->getPosition().x + (velocidad * movH), sprite->getPosition().y + (velocidad * movV));
+		//despues de hacer movimiento evaluar si choca con pacman(tal vez)  tambien...
+	}
+
+}
