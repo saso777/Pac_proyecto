@@ -1,7 +1,7 @@
 #include "Personaje.h"
 
 Personaje::Personaje(int vidas, int velocidad, string nombre, float x, float y, string ruta, float scaleX, float scaleY, bool comer)
-{//
+{
 	this->pix = 0;
 	this->piy = 0;
 	this->velocidad = velocidad;
