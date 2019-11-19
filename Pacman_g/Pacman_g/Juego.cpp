@@ -91,10 +91,12 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	cout << "RUTA MAS CORTA\n";
 	while (camino != NULL) {
 		if (camino->getPredecesor() != NULL) {
-			cout << camino->getId() << "->";
+			cout << camino->getId() << "->"<<endl;
+			cout << "X: " << camino->getX() << " Y: " << camino->getY() << endl;
 		}
 		else {
-			cout << camino->getId();
+			cout << camino->getId()<<endl;
+			cout << "X: " << camino->getX() << " Y: " << camino->getY() << endl;
 		}
 		camino = camino->getPredecesor();
 	}
@@ -798,10 +800,10 @@ Nodo* Juego::dijkstra(Nodo*& lista, int x, int y) {
 						nodo->setIteraciones(iteraciones);
 						nodo->setPesoAcumulado(nodoDato->getPesoAcumulado() + vertices->getPeso());
 						nodo->setPredecesor(nodoDato);
-						nodo->setX(nodoDato->getX());
-						nodo->setY(nodoDato->getY());
-						nodo->setPx(nodo->getPx());
-						nodo->setPy(nodo->getPy());
+						nodo->setX(lista->getNodoDato(lista, vertices->getDato())->getX());
+						nodo->setY(lista->getNodoDato(lista, vertices->getDato())->getY());
+						nodo->setPx(lista->getNodoDato(lista, vertices->getDato())->getPx());
+						nodo->setPy(lista->getNodoDato(lista, vertices->getDato())->getPy());
 						lista->insertarNodo(temporales, nodo);
 					}
 					else {
