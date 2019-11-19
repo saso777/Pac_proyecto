@@ -80,5 +80,9 @@ public:
 	void moverPersonaje(Boton* scenario[21][19], int& ptsTotal, int& pacdots, int& fantasmasMuertos, int& vidas, int& vidasPerdidas, Personaje* fantasmas[4]);
 	//metodos propios
 
-
+	//REFERENCTE A LOS FANTASMAS
+	void fElegirCamino(/*Nodo* camino*/);//se recive el nodo se obtiene sus coordenadas y se madna a mover fantasma
+	void fMoverFantasma(int posx, int posy);//x futura y Y futura
+	void fReajustarPosicion(int fx, int fy);//se procede a reajustar las distancia entre el fantasma y el nodo
+	//REFERENTE A LOS FANTASMAS
 };

@@ -75,11 +75,42 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	cargarMapaVisual();
 	//referente al escenario
 
+	mapa->generaMatrizDeAdyacencia(); //Matriz de adyacencia
+	lista = mapa->getListaAdyacencia();
+	cout << "\n\nLISTA DE ADYANCECIA\n\n";
+	mapa->getListaAdyacencia()->mostrarLista(lista);
+	cout << "\n\nLISTA DE ADYANCECIA\n\n";
 
+	//camino = dijkstra(lista, 47, 29);
+	/*
+	while (camino->getSiguiente() != NULL) {
+		camino = camino->getSiguiente();
+	}
+	int peso = camino->getPesoAcumulado();
+	*/
+	cout << "RUTA MAS CORTA\n";
+	while (camino != NULL) {
+		if (camino->getPredecesor() != NULL) {
+			cout << camino->getId() << "->"<<endl;
+			cout << "X: " << camino->getX() << " Y: " << camino->getY() << endl;
+		}
+		else {
+			cout << camino->getId()<<endl;
+			cout << "X: " << camino->getX() << " Y: " << camino->getY() << endl;
+		}
+		camino = camino->getPredecesor();
+	}
+	//cout << "\n\nCON PESO DE: " << peso << endl;
+
+
+
+
+	////////////////////////////
 	cout << "Posicion X: " << scenario[0][0]->getSprite()->getPosition().x << endl;
 	cout << "Pacdots Totales Restantes: " << pacDots << endl;
 	cout << "Pts Optenidos: " << ptsTotal << endl;
-	mapa->generaMatrizDeAdyacencia(); //Matriz de adyacencia
+
+
 	gameLoop();
 
 	cout << "**************************************" << endl;
@@ -218,18 +249,20 @@ void Juego::gameLoop()
 		//meter esto en asuntos pacman XD
 		*/
 
+		//cuando se vayan a mover a los fantasmas se deve hacer con el ondicional de juegoIniciado;
+		if (juegoIniciado == true) {
+
+			cambiarRutaFantasmas();
+
+		}
+
 		//ver se hay alguna colicion en la direccion a la que se le habia dicho al pacman que fuera
 		pacman->verFutColision(scenario, ptsTotal, pacDots, fantasmasMuertos, vidas, vidasPerdidas, fantasmas);
 		pacman->moverPersonaje(scenario, ptsTotal, pacDots, fantasmasMuertos, vidas, vidasPerdidas, fantasmas);
 		//ver se hay alguna colicion en la direccion a la que se le habia dicho al pacman que fuera
 
 
-		//cuando se vayan a mover a los fantasmas se deve hacer con el ondicional de juegoIniciado;
-		if (juegoIniciado == true) {
-
-			//moverFantasmas
-
-		}
+		
 
 
 		//para poder saber en que Vertice del grafo esta pacman(aun falta hacer nmetodo para saber el futuro nodo al que puede ir
@@ -689,6 +722,7 @@ void Juego::convertirPosPacMat(int px, int py)
 					&& py > scenario[f][c]->getY() - (scenario[f][c]->getAlto() / 2)) {
 
 					buscarVertice(c, f);
+					
 
 					/*cout << "BLOQUE: " << endl;
 					cout << "( " << c << " , " << f << " );" << endl;*/
@@ -707,15 +741,170 @@ void Juego::buscarVertice(int x, int y)
 
 	for (int i = 0; i < mapa->getTamGrafo(); i++) {
 
+		//cout << "===> " << mapa->getGrafo(i)->getX() << " , " << mapa->getGrafo(i)->getY() << "----->>" << mapa->getGrafo(i)->getHayPacman();
+		
 		if (mapa->getGrafo(i)->getX() == x && mapa->getGrafo(i)->getY() == y) {
 
-			//cout << "ESTAAA EN UN VERTICE DEL GRAFO" << endl;
+			//cout << "!!!!PACMAN EN:" << mapa->getGrafo(i)->getX() << "--" << mapa->getGrafo(i)->getY() << endl;
+
+			//falsear estancia en vertices pasados...
+			falsearEstanciaPacman();
+
 			mapa->getGrafo(i)->setHayPacman(true);
-		}
-		else {
-			mapa->getGrafo(i)->setHayPacman(false);
+			
+			//llamar a modificar ruta de fantasmas
+			// y tambien cambiar metodo de re rutas para que acepte X y Y en lugar del ID
+
+			//cout << "X:::::::::::::::::::::::" << mapa->getGrafo(i)->getX() << endl;
+			//cout << "Y:::::::::::::::::::::::" << mapa->getGrafo(i)->getY() << endl;
+
 		}
 
 	}
+	//cout << "****************************************************************" << endl;
 
+}
+
+void Juego::falsearEstanciaPacman()
+{
+
+	for (int i = 0; i < mapa->getTamGrafo(); i++) {
+
+		mapa->getGrafo(i)->setHayPacman(false);//ineficiente pero una opcion con respecto al tiempo
+
+	}
+
+}
+
+Nodo* Juego::dijkstra(Nodo*& lista, int x, int y) {
+	Nodo* temporales = NULL;
+	Nodo* finales = NULL;
+
+	int peso = 0;
+	int iteraciones = 1;
+
+	cout << "juaj" << endl << endl << endl;////////////////////////////////////////////////////////////////////////////
+	finales->insertarNodo(finales, finales->getNodoDato(lista, x));
+	temporales->setVisitado(lista, x);
+	bool fin = false;
+	if (x != y) {
+		while (!fin) {
+			Nodo* nodoDato = lista->getNodoDato(finales, x);
+			Nodo* nodoDato1 = lista->getNodoDato(lista, x);
+			Vertice* vertices = nodoDato1->getVertices();
+			while (vertices != NULL) {
+				if (!vertices->getVisitado()) {
+					if (!lista->existe(temporales, vertices->getDato())) {
+						Nodo* nodo = new Nodo();
+						nodo->setId(vertices->getDato());
+						nodo->setIteraciones(iteraciones);
+						nodo->setPesoAcumulado(nodoDato->getPesoAcumulado() + vertices->getPeso());
+						nodo->setPredecesor(nodoDato);
+						nodo->setX(lista->getNodoDato(lista, vertices->getDato())->getX());
+						nodo->setY(lista->getNodoDato(lista, vertices->getDato())->getY());
+						nodo->setPx(lista->getNodoDato(lista, vertices->getDato())->getPx());
+						nodo->setPy(lista->getNodoDato(lista, vertices->getDato())->getPy());
+						lista->insertarNodo(temporales, nodo);
+					}
+					else {
+						Nodo* aux = temporales; bool encontrado = false;
+						while (!encontrado) {
+
+							if (aux->getId() == vertices->getDato()) {
+								int pesoNodo = nodoDato->getPesoAcumulado() + vertices->getPeso();
+								encontrado = true;
+								if (pesoNodo < aux->getPesoAcumulado()) {
+									aux->setPesoAcumulado(pesoNodo);
+									aux->setIteraciones(iteraciones);
+									aux->setPredecesor(nodoDato);
+								}
+							}
+							else {
+								aux = aux->getSiguiente();
+							}
+						}
+					}
+				}
+				vertices = vertices->getSiguiente();
+			}
+			if (lista->menor(temporales) != -1) {
+				Nodo* nodoFinal = lista->eliminar(temporales, lista->menor(temporales));
+				finales->insertarNodo(finales, nodoFinal);
+				lista->setVisitado(lista, nodoFinal->getId());
+				iteraciones++;
+				if (nodoFinal->getId() == y) {
+					fin = true;
+				}
+				else {
+					x = nodoFinal->getId();
+				}
+			}
+		}
+	}
+	return finales;
+}
+
+void Juego::cambiarRutaFantasmas()
+{
+	
+	int idP = -1, idF = -1;
+	
+	
+
+
+	//buscar a fantasmas fatnasmas
+	for (int i = 0; i < 4; i++) {
+
+		for (int f = 0; f < 21; f++) {
+
+			for (int c = 0; c < 19; c++) {
+
+				if (scenario[f][c] != NULL) {
+					//cout << "FX: " << fantasmas[i]->getX() << "FY: " << fantasmas[i]->getY() << endl;
+					if ((fantasmas[i]->getX() < scenario[f][c]->getX() + (scenario[f][c]->getAncho() / 2))
+						&& fantasmas[i]->getX() > scenario[f][c]->getX() - (scenario[f][c]->getAncho() / 2)
+						&& fantasmas[i]->getY() < scenario[f][c]->getY() + (scenario[f][c]->getAlto() / 2)
+						&& fantasmas[i]->getY() > scenario[f][c]->getY() - (scenario[f][c]->getAlto() / 2)) {
+						cout << "Fantasma en Vertice::::::" << c << " , " << f << endl;
+						//aqui valida las posiciones de los vertices y de los fantasmas
+						for (int i = 0; i < mapa->getTamGrafo(); i++) {
+
+							if (mapa->getGrafo(i)->getX() == c && mapa->getGrafo(i)->getY() == f) {
+								
+								//buscar a pacman;
+								
+								for (int i = 0; i < mapa->getTamGrafo(); i++) {
+
+									if (mapa->getGrafo(i)->getHayPacman() == true) {
+
+										idP = mapa->getGrafo(i)->getId();
+										cout << idP << endl << endl;
+										cout << mapa->getGrafo(i)->getPesoIzq() << endl << endl;
+
+									}
+
+								}
+								idF = mapa->getGrafo(i)->getId();
+								//buscar a fantasmas fantasmas
+
+								if ((idP && idF) > -1) {
+
+									//camino = dijkstra(lista, idP, idF);
+									
+								}
+								
+								break;
+
+							}
+
+						}
+					}
+
+				}
+
+			}
+
+		}
+
+	}
 }

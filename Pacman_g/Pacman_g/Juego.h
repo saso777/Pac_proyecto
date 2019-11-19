@@ -29,6 +29,7 @@ private:
 	//referente a los personajes
 	Personaje* pacman;
 	Personaje* fantasmas[4];
+	Nodo* camino, * lista;
 	//referente a los personajes
 	//referente al UI
 	Boton* poderesDisp[3];
@@ -131,8 +132,15 @@ public:
 
 
 	//buscar ubicacion de pacman con respecto a la matriz y buscar el vertice en el cual puede ser que este pacman
-	void convertirPosPacMat(int px, int py);
+	void convertirPosPacMat(int px, int py);//a final de cuentas tambien se encontrar donde estan los fantasmas
+	
 	void buscarVertice(int x, int y);
+
+	void falsearEstanciaPacman();
+	Nodo* dijkstra(Nodo*& lista, int x, int y);
+	//Nodo* dijkstra(Nodo*& lista, int px, int py, int fx, int fy);//lo mismo pero mas varato XD...mejor despues
+
+	void cambiarRutaFantasmas();
 
 	//buscar ubicacion de pacman con respecto a la matriz y buscar el vertice en el cual puede ser que este pacman
 };

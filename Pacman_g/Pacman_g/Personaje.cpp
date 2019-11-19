@@ -22,6 +22,8 @@ Personaje::Personaje(int vidas, int velocidad, string nombre, float x, float y, 
 
 		piy = sprite->getPosition().y;
 		pix = sprite->getPosition().x;
+		this->x = sprite->getPosition().x;
+		this->y = sprite->getPosition().y;
 
 	}
 	else {

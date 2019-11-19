@@ -4,7 +4,7 @@ Mapa::Mapa(int lvl)
 {
 	this->lvl = lvl;
 	tamGrafo = 0;
-
+	listaAdyacencia = NULL;
 	ruta = "Game_Files/Lvl/Maps/LVL_" + to_string(lvl) + ".txt";
 
 
@@ -12,8 +12,6 @@ Mapa::Mapa(int lvl)
 
 		inicializarMatLetras();
 		inicializarGrafo();
-
-
 	}
 
 
@@ -58,11 +56,6 @@ Nodo* Mapa::getGrafo(int indice)
 {
 	return grafo[indice];
 }
-
-
-
-
-
 
 bool Mapa::verificarTam()//validacion defectuosa
 {
@@ -156,7 +149,7 @@ void Mapa::inicializarGrafo()
 
 	for (int i = 0; i < 21; i++) {
 		for (int j = 0; j < 19; j++) {
-			if (letras[i][j] == '#' || letras[i][j] == '4' || letras[i][j] == '$') {
+			if (letras[i][j] == '#' || letras[i][j] == '4' || letras[i][j] == '$' || letras[i][j] == 'f') {
 				contNodos++;
 			}
 		}
@@ -171,7 +164,7 @@ void Mapa::inicializarGrafo()
 	contNodos = 0;
 	for (int i = 0; i < 21; i++) {
 		for (int j = 0; j < 19; j++) {
-			if (letras[i][j] == '#' || letras[i][j] == '4' || letras[i][j] == '$') {
+			if (letras[i][j] == '#' || letras[i][j] == '4' || letras[i][j] == '$' || letras[i][j] == 'f') {
 				Nodo* nodo = new Nodo();
 				nodo->setId(id);
 				nodo->setX(j);
@@ -181,9 +174,8 @@ void Mapa::inicializarGrafo()
 				clcPsNd(nodo, j, i);
 				grafo[contNodos] = nodo;
 				contNodos++;
-
 				id++;
-
+				listaAdyacencia->insertarNodo(listaAdyacencia, nodo);
 			}
 		}
 	}
@@ -212,6 +204,22 @@ int Mapa::getGrafo(int x, int y) {
 	}
 	return 0;
 }
+void Mapa::generarListasAdyacencia(int** matriz)
+{
+	Nodo* aux = listaAdyacencia;
+	for (int i = 0; i < tamGrafo; i++) {
+		Vertice* v = aux->getVertices();
+		for (int j = 0; j < tamGrafo; j++) {
+			if (matriz[i][j] != 0) {
+				Nodo* nodo = grafo[j];
+				aux->getVertices()->insertar(v, nodo->getId(), matriz[i][j]);
+			}
+		}
+		aux->setVertices(v);
+		aux = aux->getSiguiente();
+	}
+}
+
 int** Mapa::generaMatrizDeAdyacencia() {
 	//inicia varinantes
 	int fix;
@@ -256,6 +264,9 @@ int** Mapa::generaMatrizDeAdyacencia() {
 		}
 		cout << endl;
 	}
+
+	generarListasAdyacencia(matriz);
+
 	return matriz;
 	
 
@@ -272,8 +283,13 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 	if (xx > 0) {
 		xx = xx - 1;
 		while (letras[yy][xx] != 'x') {
+			if (letras[yy][xx] == ' ') {
 
-			if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$') {
+				cont = 1000;
+				break;
+
+			}
+			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' ) {
 				xx--;
 				cont++;
 			}
@@ -296,7 +312,13 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 	if (xx < 19) {
 		xx = xx + 1;
 		while (letras[yy][xx] != 'x') {
-			if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$') {
+			if (letras[yy][xx] == ' ') {
+
+				cont = 1000;
+				break;
+
+			}
+			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' && letras[yy][xx] != ' ') {
 				xx++;
 				cont++;
 			}
@@ -316,7 +338,18 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 		yy = yy - 1;
 		while (letras[yy][xx] != 'x') {
 
-			if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$') {
+			if (letras[yy][xx] == ' ') {
+
+				cont = 1000;
+				break;
+
+			}
+			else if (letras[yy][xx] == ' ') {
+
+				break;
+
+			}
+			else if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' && letras[yy][xx] != ' ') {
 				yy--;
 				cont++;
 			}
@@ -338,7 +371,13 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 		yy = yy + 1;
 		while (letras[yy][xx] != 'x') {
 
-			if (letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$') {
+			if (letras[yy][xx] == ' ') {
+
+				cont = 1000;
+				break;
+
+			}
+			else if(letras[yy][xx] != '#' && letras[yy][xx] != '4' && letras[yy][xx] != '$' && letras[yy][xx] != ' ') {
 				yy++;
 				cont++;
 			}
@@ -359,4 +398,8 @@ void Mapa::clcPsNd(Nodo*& nodo, int x, int y)
 	cout << "Nodos A Derecha: " << nodo->getPesoDer() << endl;
 	cout << "Nodos A Arriba: " << nodo->getPesoAr() << endl;
 	cout << "Nodos A Abajo: " << nodo->getPesoAb() << endl;*/
+}
+
+Nodo* Mapa::getListaAdyacencia() {
+	return listaAdyacencia;
 }
