@@ -75,10 +75,11 @@ Juego::Juego(Mapa* mapa, int lvl, string tema)
 	cargarMapaVisual();
 	//referente al escenario
 
-	mapa->generaMatrizDeAdyacencia(); //Matriz de adyacencia
+	matAd = mapa->generaMatrizDeAdyacencia(); //Matriz de adyacencia
 	lista = mapa->getListaAdyacencia();
 	cout << "\n\nLISTA DE ADYANCECIA\n\n";
 	mapa->getListaAdyacencia()->mostrarLista(lista);
+	crearFloyd();
 	cout << "\n\nLISTA DE ADYANCECIA\n\n";
 
 	camino = dijkstra(lista, 0, 6);
@@ -907,5 +908,45 @@ void Juego::cambiarRutaFantasmas()
 
 		}
 
+	}
+}
+
+void Juego::crearFloyd()
+{
+	matFloyd = new int* [mapa->getTamGrafo()];
+	for (int i = 0; i < mapa->getTamGrafo(); i++) {
+		matFloyd[i] = new int[mapa->getTamGrafo()];
+	}
+	matRutas = new int* [mapa->getTamGrafo()];
+	for (int i = 0; i < mapa->getTamGrafo(); i++) {
+		matRutas[i] = new int[mapa->getTamGrafo()];
+	}
+
+	for (int i = 0; i < mapa->getTamGrafo(); i++) {
+		for (int j = 0; j < mapa->getTamGrafo(); j++) {
+			matFloyd[i][j] = matAd[i][j];
+		}
+	}
+	for (int i = 0; i < mapa->getTamGrafo(); i++) {
+		for (int j = 0; j < mapa->getTamGrafo(); j++) {
+			matRutas[j][i] = i;
+		}
+	}
+	/*for (int i = 0; i < mapa->getTamGrafo(); i++) {
+		for (int j = 0; j < mapa->getTamGrafo(); j++) {
+			cout << matRutas[i][j] << " ";
+		}
+		cout << endl;
+	}*/
+	for (int i = 0; i < mapa->getTamGrafo(); i++) {
+		for (int j = 0; j < mapa->getTamGrafo(); j++) {
+			for (int k = 0; k < mapa->getTamGrafo(); k++) {
+				if (matFloyd[j][i] + matFloyd[i][k] < matFloyd[j][k]) {
+					matFloyd[j][k] = matFloyd[j][i] + matFloyd[i][k];
+					matRutas[j][k] = i;
+
+				}
+			}
+		}
 	}
 }

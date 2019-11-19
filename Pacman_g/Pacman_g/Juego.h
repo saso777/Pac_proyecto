@@ -30,6 +30,10 @@ private:
 	Personaje* pacman;
 	Personaje* fantasmas[4];
 	Nodo* camino, * lista;
+	int** matAd;///matriz de adyacencia
+	int** matFloyd; //metriz 1 del floyd
+	int** matRutas; //matriz de rutas del  floyd
+
 	//referente a los personajes
 	//referente al UI
 	Boton* poderesDisp[3];
@@ -143,4 +147,9 @@ public:
 	void cambiarRutaFantasmas();
 
 	//buscar ubicacion de pacman con respecto a la matriz y buscar el vertice en el cual puede ser que este pacman
+
+	//metodo para crear las matriz floyd 
+	void crearFloyd();
+	//metdo para iniciar la matriz de rutas
+
 };
