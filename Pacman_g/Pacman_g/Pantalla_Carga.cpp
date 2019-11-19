@@ -71,7 +71,7 @@ void Pantalla_Carga::evaluarPos()/////////////////////////7arreglar esta parte//
 
 void Pantalla_Carga::selectAnim()
 {
-	int valor = getRanNum(1, 5);
+	int valor = getRanNum(1, 4);
 	//personaje = NULL;
 	//personaje = new Boton("", -500, -500, "Game_Files/Textures/Personajes/PAC_Perseguido.png", 0.3, 0.3);
 	cout << valor << endl;
@@ -86,18 +86,6 @@ void Pantalla_Carga::selectAnim()
 	}
 	else if (valor == 4) {
 		anim4();
-	}
-	else if (valor == 5) {
-
-	}
-	else if (valor == 6) {
-
-	}
-	else if (valor == 7) {
-
-	}
-	else if (valor == 8) {
-
 	}
 }
 

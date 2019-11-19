@@ -83,7 +83,7 @@ public:
 
 	//REFERENCTE A LOS FANTASMAS
 	void fElegirMovimiento(Nodo*& camino);//se recive el nodo se obtiene sus coordenadas y se madna a mover fantasma en la direccion indicada, reajsta ubicacion.
-	void fMoverFantasma(Nodo*& camino);//x futura y Y futura
-	void fEvaluarPosFantasma(Nodo*& camino);//se procede a reajustar las distancia entre el fantasma y el nodo
+	bool fMoverFantasma(Nodo*& camino);//x futura y Y futura
+	bool fEvaluarPosFantasma(Nodo*& camino);//se procede a reajustar las distancia entre el fantasma y el nodo
 	//REFERENTE A LOS FANTASMAS
 };

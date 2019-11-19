@@ -548,13 +548,11 @@ void Personaje::moverPersonaje(Boton* scenario[21][19], int& ptsTotal, int& pacd
 void Personaje::fElegirMovimiento(Nodo*& camino)
 {
 	
-	
-
 	if (camino != NULL) {
 		cout << "Nodox: " << camino->getPx();		cout << "-----NodoY: " << camino->getPy() << endl;
 		cout << "FantasmaX: " << sprite->getPosition().x << "-----FantasmaY: " << sprite->getPosition().y << endl;
 
-		//cout << "jojo" << endl;
+		
 		if (camino->getPx() > sprite->getPosition().x) {
 			//cout << "Derecha:" << endl;
 			movV = 0;
@@ -580,7 +578,7 @@ void Personaje::fElegirMovimiento(Nodo*& camino)
 		}
 		else {
 
-			
+			//cout << "NADA----NADA-----NADA" << endl;
 			movH = 0;	movV = 0;
 
 		}
@@ -592,29 +590,45 @@ void Personaje::fElegirMovimiento(Nodo*& camino)
 
 }
 
-void Personaje::fMoverFantasma(Nodo*& camino)
+bool Personaje::fMoverFantasma(Nodo*& camino)
 {
-
+	bool x = false;
 	if (sprite != NULL) {
 		//antes de hacer movimiento evaluar si choca con pacman(tal vez) 
+		x = fEvaluarPosFantasma(camino);
 		sprite->setPosition(sprite->getPosition().x + (velocidad * movH), sprite->getPosition().y + (velocidad * movV));
-		fEvaluarPosFantasma(camino);
+		return x;
 		//despues de hacer movimiento evaluar si choca con pacman(tal vez)  tambien...
 	}
+	else {
+		return x;
+	}
+
+	
 
 }
 
-void Personaje::fEvaluarPosFantasma(Nodo*& camino)
+bool Personaje::fEvaluarPosFantasma(Nodo*& camino)
 {
 	if (camino != NULL) {
 
 		if (camino->getPx() == sprite->getPosition().x && camino->getPy() == sprite->getPosition().y) {
 
 			camino = camino->getPredecesor();
-			
+			fElegirMovimiento(camino);
 			cout << "HA LLEGAO" << endl;
+			return true;
+		}
+		else {
+
+			return false;
 
 		}
+
+	}
+	else {
+
+		return false;
 
 	}
 }
