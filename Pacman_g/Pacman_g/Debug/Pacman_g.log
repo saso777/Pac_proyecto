@@ -4,20 +4,20 @@ C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(59,47):
 C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(59,38): warning C4309:  'argumento': truncamiento de valor constante
 C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(59,33): warning C4309:  'argumento': truncamiento de valor constante
 C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(59,28): warning C4309:  'argumento': truncamiento de valor constante
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(269,94): warning C4244:  'argumento': conversión de 'const T' a 'int'; posible pérdida de datos
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(269,94): warning C4244:         with
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(269,94): warning C4244:         [
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(269,94): warning C4244:             T=float
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(269,94): warning C4244:         ]
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(269,56): warning C4244:  'argumento': conversión de 'const T' a 'int'; posible pérdida de datos
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(269,56): warning C4244:         with
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(269,56): warning C4244:         [
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(269,56): warning C4244:             T=float
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(269,56): warning C4244:         ]
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(330,151): warning C4305:  'argumento': truncamiento de 'double' a 'float'
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(530,79): warning C4244:  'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(530,61): warning C4244:  'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(560,94): warning C4305:  'argumento': truncamiento de 'double' a 'float'
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(560,69): warning C4244:  'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(560,53): warning C4244:  'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(273,94): warning C4244:  'argumento': conversión de 'const T' a 'int'; posible pérdida de datos
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(273,94): warning C4244:         with
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(273,94): warning C4244:         [
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(273,94): warning C4244:             T=float
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(273,94): warning C4244:         ]
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(273,56): warning C4244:  'argumento': conversión de 'const T' a 'int'; posible pérdida de datos
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(273,56): warning C4244:         with
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(273,56): warning C4244:         [
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(273,56): warning C4244:             T=float
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(273,56): warning C4244:         ]
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(334,151): warning C4305:  'argumento': truncamiento de 'double' a 'float'
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(534,79): warning C4244:  'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(534,61): warning C4244:  'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(564,94): warning C4305:  'argumento': truncamiento de 'double' a 'float'
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(564,69): warning C4244:  'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Pacman_g\Juego.cpp(564,53): warning C4244:  'argumento': conversión de 'int' a 'float'; posible pérdida de datos
   Pacman_g.vcxproj -> C:\Users\joseisaac\source\repos\Pac_proyecto\Pacman_g\Debug\Pacman_g.exe
