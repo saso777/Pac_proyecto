@@ -310,7 +310,7 @@ void Juego::gameLoop()
 			cambiarRutaBlinky();
 			cambiarRutaPinky();
 			cambiarRutaClyde();
-			//cambiarRutaInky();
+			cambiarRutaInky();
 			
 
 		}
@@ -447,7 +447,7 @@ void Juego::verificarTiempo_de_comida()
 void Juego::verificarPts(int mitadPacDots)
 {
 
-	if (mitadPacDots == ptsTotal / 10) {
+	if (mitadPacDots == pacDots) {
 
 		//aumentar la velocidad de los fantasmas
 		cout << "PUNTOS******************************************************************************" << endl << endl << endl << endl << endl;;
@@ -596,6 +596,11 @@ Boton* Juego::elegirRutaTextura(char letra, int x, int y)
 			return elegirTextura("Comestible", "Game_Files/Textures/Gameplay/yellow_circle.png", x, y, 0.2f, 0.2f, -10, -10);
 
 		}
+
+	}
+	else if (letra == 'd' || letra == 'D') {
+
+		return elegirTextura("Tapar Camino", "Game_Files/Textures/Gameplay/grey_sliderDown.png", x, y, 1, 0.6f, -10, -10);
 
 	}
 	else if (letra == 'p') {
@@ -1022,7 +1027,7 @@ void Juego::cambiarRutaBlinky()//para dijsktra
 					&& fantasmas[0]->getSprite()->getPosition().x > scenario[f][c]->getX() - 10/*(scenario[f][c]->getAncho() / 2)*/
 					&& fantasmas[0]->getSprite()->getPosition().y < scenario[f][c]->getY() + 10/*(scenario[f][c]->getAlto() / 2) - 5*/
 					&& fantasmas[0]->getSprite()->getPosition().y > scenario[f][c]->getY() - 10/*(scenario[f][c]->getAlto() / 2) + 5*/) {
-					cout << "Fantasma en Vertice::::::" << c << " , " << f << endl;
+					//cout << "Fantasma en Vertice::::::" << c << " , " << f << endl;
 					//aqui valida las posiciones de los vertices y de los fantasmas
 					for (int i = 0; i < mapa->getTamGrafo(); i++) {
 
@@ -1336,6 +1341,63 @@ void Juego::cambiarRutaPinky()
 
 void Juego::cambiarRutaInky()
 {
+
+	Nodo* ini = NULL;
+	Nodo* fin = NULL;
+	Nodo* aux = NULL;
+	//inky es el 4 xd
+	for (int i = 0; i < mapa->getTamGrafo(); i++) {
+
+		if (fantasmas[2]->getSprite()->getPosition().x < mapa->getGrafo(i)->getPx() + 10
+			&& fantasmas[2]->getSprite()->getPosition().x > mapa->getGrafo(i)->getPx() - 10
+			&& fantasmas[2]->getSprite()->getPosition().y < mapa->getGrafo(i)->getPy() + 10
+			&& fantasmas[2]->getSprite()->getPosition().y > mapa->getGrafo(i)->getPy() - 10) {
+			/*cout << "CLYDEX:" << mapa->getGrafo(i)->getX() << endl;
+			cout << "CLYDEY:" << mapa->getGrafo(i)->getY() << endl;*/
+			ini = mapa->getGrafo(i);
+			break;
+
+		}
+
+	}
+
+	fin = buscarVerticeAleatorio();
+
+	if (ini != NULL && fin != NULL) {
+
+		aux = Floyd(ini, fin);
+		aux = aux->getSiguiente();
+
+	}
+	fantasmas[2]->fElegirMovimiento(aux);
+	fantasmas[2]->fMoverFantasma(aux, true);
+
+
+
+
+
+
+	if (fantasmas[2]->getSprite()->getPosition().x > 810) {
+
+		fantasmas[2]->getSprite()->setPosition(-3, fantasmas[2]->getSprite()->getPosition().y);
+
+	}
+	else if (fantasmas[2]->getSprite()->getPosition().x < -10) {
+
+		fantasmas[2]->getSprite()->setPosition(801, fantasmas[2]->getSprite()->getPosition().y);
+
+	}
+	if (fantasmas[2]->getSprite()->getPosition().y > 730) {
+
+		fantasmas[2]->getSprite()->setPosition(fantasmas[2]->getSprite()->getPosition().x, -1);
+
+	}
+	else if (fantasmas[2]->getSprite()->getPosition().y < -10) {
+
+		fantasmas[2]->getSprite()->setPosition(fantasmas[2]->getSprite()->getPosition().x, 721);
+
+	}
+
 }
 
 void Juego::cambiarRutaClyde()
