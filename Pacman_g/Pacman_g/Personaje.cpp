@@ -597,7 +597,7 @@ void Personaje::fElegirMovimiento(Nodo*& camino)
 
 }
 
-bool Personaje::fMoverFantasma(Nodo*& camino)
+bool Personaje::fMoverFantasma(Nodo*& camino, bool cambiar)
 {
 	bool x = false;//x es innecesario
 	if (sprite != NULL) {
@@ -608,6 +608,11 @@ bool Personaje::fMoverFantasma(Nodo*& camino)
 
 
 		sprite->setPosition(sprite->getPosition().x + (velocidad * movH), sprite->getPosition().y + (velocidad * movV));
+		/*if (cambiar == true) {
+			if (camino->getSiguiente() != NULL) {
+				camino = camino->getSiguiente();
+			}
+		}*/
 		return x;
 		//despues de hacer movimiento evaluar si choca con pacman(tal vez)  tambien...
 	}

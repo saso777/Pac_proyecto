@@ -308,6 +308,9 @@ void Juego::gameLoop()
 		if (juegoIniciado == true) {
 
 			cambiarRutaBlinky();
+			cambiarRutaPinky();
+			cambiarRutaClyde();
+			//cambiarRutaInky();
 			
 
 		}
@@ -1104,7 +1107,7 @@ void Juego::cambiarRutaBlinky()//para dijsktra
 	}
 
 	fantasmas[0]->fElegirMovimiento(camino1);
-	fantasmas[0]->fMoverFantasma(camino1);
+	fantasmas[0]->fMoverFantasma(camino1, false);
 
 
 
@@ -1218,7 +1221,7 @@ void Juego::cambiarRutaPinky()
 		cout << "idF:   " << idF << endl;
 
 		camino2->cambiarVisitados(lista2);//////////////////////////////////////////7
-		camino2 = dijkstra(lista2, idP, idF);
+		camino2 = dijkstraLargo(lista2, idP, idF);
 		//cout << endl << endl << "OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl;
 		while (camino2->getSiguiente() != NULL) {
 			camino2 = camino2->getSiguiente();
@@ -1257,7 +1260,7 @@ void Juego::cambiarRutaPinky()
 	}
 
 	fantasmas[1]->fElegirMovimiento(camino2);
-	fantasmas[1]->fMoverFantasma(camino2);
+	fantasmas[1]->fMoverFantasma(camino2, false);
 
 
 
@@ -1309,22 +1312,85 @@ void Juego::cambiarRutaPinky()
 
 }
 
+void Juego::cambiarRutaInky()
+{
+}
+
 void Juego::cambiarRutaClyde()
 {
-	
+	Nodo* ini = NULL;
+	Nodo* fin = NULL;
+	Nodo* aux = NULL;
 	//clyde es el 4 xd
 	for (int i = 0; i < mapa->getTamGrafo(); i++) {
 
-		if (fantasmas[3]->getSprite()->getPosition().x < mapa->getGrafo(i)->getPx() + 15
-			&& fantasmas[3]->getSprite()->getPosition().x > mapa->getGrafo(i)->getPx() - 15
-			&& fantasmas[3]->getSprite()->getPosition().y < mapa->getGrafo(i)->getPy() + 15
-			&& fantasmas[3]->getSprite()->getPosition().y > mapa->getGrafo(i)->getPy() - 15) {
-
+		if (fantasmas[3]->getSprite()->getPosition().x < mapa->getGrafo(i)->getPx() + 10
+			&& fantasmas[3]->getSprite()->getPosition().x > mapa->getGrafo(i)->getPx() - 10
+			&& fantasmas[3]->getSprite()->getPosition().y < mapa->getGrafo(i)->getPy() + 10
+			&& fantasmas[3]->getSprite()->getPosition().y > mapa->getGrafo(i)->getPy() - 10) {
+			/*cout << "CLYDEX:" << mapa->getGrafo(i)->getX() << endl;
+			cout << "CLYDEY:" << mapa->getGrafo(i)->getY() << endl;*/
+			ini = mapa->getGrafo(i);
 
 
 		}
+		/*if (pacman->getSprite()->getPosition().x < mapa->getGrafo(i)->getPx() + 6
+			&& pacman->getSprite()->getPosition().x > mapa->getGrafo(i)->getPx() - 6
+			&& pacman->getSprite()->getPosition().y < mapa->getGrafo(i)->getPy() + 6
+			&& pacman->getSprite()->getPosition().y > mapa->getGrafo(i)->getPy() - 6) {
+			*/
+		if (mapa->getGrafo(i)->getHayPacman() == true) {
+
+			fin = mapa->getGrafo(i);
+
+		}
+
+		//}
+
+		if (ini != NULL && fin != NULL) {
+
+			break;
+
+		}
+	}
+
+	if (ini != NULL && fin != NULL) {
+
+		aux = Floyd(ini, fin);
+		aux = aux->getSiguiente();
+		
+	}
+	fantasmas[3]->fElegirMovimiento(aux);
+	fantasmas[3]->fMoverFantasma(aux, true);
+
+
+
+
+
+
+	if (fantasmas[3]->getSprite()->getPosition().x > 810) {
+
+		fantasmas[3]->getSprite()->setPosition(-3, fantasmas[3]->getSprite()->getPosition().y);
 
 	}
+	else if (fantasmas[3]->getSprite()->getPosition().x < -10) {
+
+		fantasmas[3]->getSprite()->setPosition(801, fantasmas[3]->getSprite()->getPosition().y);
+
+	}
+	if (fantasmas[3]->getSprite()->getPosition().y > 730) {
+
+		fantasmas[3]->getSprite()->setPosition(fantasmas[3]->getSprite()->getPosition().x, -1);
+
+	}
+	else if (fantasmas[3]->getSprite()->getPosition().y < -10) {
+
+		fantasmas[3]->getSprite()->setPosition(fantasmas[3]->getSprite()->getPosition().x, 721);
+
+	}
+
+
+
 
 }
 
