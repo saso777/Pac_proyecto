@@ -1,10 +1,16 @@
 #include "Pantalla_Jugador.h"
-
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iomanip>
 Pantalla_Jugador::Pantalla_Jugador()
 {//
 	rw = new RenderWindow(VideoMode(800, 600), "Datos de Jugador");
 	rw->setFramerateLimit(20);
 	verTrofeos();
+	obtener_datos_de_jugador();
 
 	loop();
 }
@@ -26,11 +32,13 @@ void Pantalla_Jugador::loop()
 	}
 }
 
+
 void Pantalla_Jugador::draw()
 {
 	rw->clear();
 	//mostrar El textfield y poder guardar el nombre y ademas poner el boton para reiniciar y ademas el de comprar vidas si es que tiene menos de 6
 	mostrarTofeos();
+	mostrar_datos();
 
 	rw->display();
 }
@@ -56,6 +64,65 @@ void Pantalla_Jugador::mostrarTofeos()
 
 	}
 }
+void Pantalla_Jugador::mostrar_datos()
+{
+	Text text1;
+	Text text2;
+	Text text3;
+	Text text4;
+	Text text5;
+	//vector para imprimir
+	Vector2f vector (20,400);
+	Font font;
+
+	font.loadFromFile("Game_Files/Fonts/CotrellCFExtraBold-Regular.ttf");
+		
+	
+	text1.setString("Nombre del jugador: "+jugador);
+	text2.setString("Numero del total de vidas restantes: "+total_vidas);
+	text3.setString("Fantamas totales comidos: " + fatasmas_comidos);
+	text4.setString("tiempo total jugado en segundos: "+datos_tiempo_jugado);
+	text5.setString("Historial: \n"+data_cap);
+	//datos
+	text1.setFillColor(Color::White);
+	text1.setCharacterSize(18);
+	text1.setFont(font);
+	//
+	text2.setFillColor(Color::White);
+	text2.setCharacterSize(18);
+	text2.setFont(font);
+	//
+	text3.setFillColor(Color::White);
+	text3.setCharacterSize(18);
+	text3.setFont(font);
+	//
+	text4.setFillColor(Color::White);
+	text4.setCharacterSize(18);
+	text4.setFont(font);
+	//
+	text5.setFillColor(Color::White);
+	text5.setCharacterSize(18);
+	text5.setFont(font);
+	text1.setPosition(vector);
+	
+	rw->draw(text1);
+	vector.y = vector.y + 30;
+	text2.setPosition(vector);
+	vector.y = vector.y + 30;
+	rw->draw(text2);
+	text3.setPosition(vector);
+	vector.y = vector.y + 30;
+	rw->draw(text3);
+	text4.setPosition(vector);
+	rw->draw(text4);
+	
+	vector.x = (420);
+	vector.y = 380;
+	text5.setPosition(vector);
+	rw->draw(text5);
+
+}
+
 
 
 
@@ -197,6 +264,47 @@ void Pantalla_Jugador::guardarLineaTrofeo(int posicion, int ubicacionVec, int& x
 
 
 	}
+	f.close(); //si no sirve este metodo mas, borran esto, es que en teoria si se abre el archivo al finalizar se debe de cerrar
 
 }
+
+void Pantalla_Jugador::obtener_datos_de_jugador()
+{
+	
+	ifstream f1("Game_Files/Data/Segundos_Juego.txt");
+	 
+	
+		
+		getline(f1, datos_tiempo_jugado);
+		f1.close();
+
+	ifstream f2("Game_Files/Data/Fantasmas_Comidos.txt");
+	 
+	
+		getline(f2, fatasmas_comidos);
+		f2.close();
+
+	ifstream f3("Game_Files/Data/Total_Vidas.txt");
+	 
+	
+		getline(f3, total_vidas);
+		f3.close();
+		ifstream f4("Game_Files/Data/Jugador.txt");
+	
+		getline(f4, jugador);
+		f4.close();
+		ifstream f5("Game_Files/Data/Score/ptj_Total.txt");
+
+		string temp;
+		while (getline(f5, data_cap)) {
+			temp = temp + data_cap+"\n";
+		}
+		
+		f4.close();
+		data_cap = temp;
+	
+
+	
+}
+
 
