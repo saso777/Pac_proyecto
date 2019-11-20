@@ -19,6 +19,7 @@ Pantalla_GameOver::Pantalla_GameOver(bool final, int nivel, int& vidas, int vida
 	rw->setFramerateLimit(15);
 	this->nivel = nivel;
 	this->vidas = vidas;
+	this->auxVidas = vidas;
 	this->vidasPerdidas = vidasPerdidas;
 	this->fantasmasMuertos = fantasmasMuertos;
 	this->ptsTotal = ptsTotal;
@@ -300,9 +301,10 @@ void Pantalla_GameOver::selecOption(int x, int y)
 										ff.close();
 
 									}
-
+									cout << "Vidassssss:   " << n << endl;
 									n = n - 3000;
-									cout << "Vidas:        " << endl;
+
+									cout << "Vidas:        " << n << endl;
 									setLine(to_string(n), "Game_Files/Data/Score/ptj_Total.txt", 4);
 
 								}
@@ -525,7 +527,7 @@ void Pantalla_GameOver::guardarInformacionPartida()
 	cout << "'" << endl;
 
 
-	if (vidas > 0) {
+	if (auxVidas > 0) {
 
 		cout << "((((((((((((((((((((((((((((((((((((((((GUARDANDO MEJOR TIEMPO DE JUEGO)))))))))))))))))))))))))))))))))))))))" << endl;
 		guardarMejorTiempoPorNivel("Game_Files/Data/Score/pts_" + to_string(nivel) + ".txt");

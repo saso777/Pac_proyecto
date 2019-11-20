@@ -127,6 +127,7 @@ public:
 	//Personaes
 	void mostrarPacman();
 	void mostrarFantasmas();
+	void resetearMovimientos();
 	//Personaes
 //Raices:
 

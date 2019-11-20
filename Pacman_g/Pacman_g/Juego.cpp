@@ -219,6 +219,7 @@ void Juego::gameLoop()
 	Event* evento = new Event();
 	int mitadPacDots = pacDots / 2;
 	int frames = 0;
+	int auxVidas = vidas;
 
 	while (rw->isOpen()) {
 
@@ -266,8 +267,18 @@ void Juego::gameLoop()
 		}
 
 		//ver se hay alguna colicion en la direccion a la que se le habia dicho al pacman que fuera
+		auxVidas = vidas;
 		pacman->verFutColision(scenario, ptsTotal, pacDots, fantasmasMuertos, vidas, vidasPerdidas, fantasmas);
 		pacman->moverPersonaje(scenario, ptsTotal, pacDots, fantasmasMuertos, vidas, vidasPerdidas, fantasmas);
+		if (auxVidas > vidas) {
+
+			juegoIniciado = false;
+			resetearMovimientos();
+
+		}
+		else {
+			auxVidas = vidas;
+		}
 		//ver se hay alguna colicion en la direccion a la que se le habia dicho al pacman que fuera
 
 
@@ -405,6 +416,8 @@ void Juego::verificarPts(int mitadPacDots)
 	}
 	else if (vidas == 0) {
 		cout << "Sin Vidas" << endl;
+		juegoIniciado = false;
+		resetearMovimientos();
 		if (gameOver() == false) {
 			rw->close();
 		}
@@ -427,7 +440,9 @@ void Juego::terminarJuego()//pequeña incongruensa .....
 
 bool Juego::gameOver()
 {
+	
 	pantalla_gameOver = new Pantalla_GameOver(false, nivel, vidas, vidasPerdidas, fantasmasMuertos, ptsTotal, tiempo);
+	ptsTotal = 0;
 	//llamar a la pantalla de game over para asi poder decidir si comprar mas vidas o abandonar la partida.
 	//cuando se cierre la ventana se pide una variable que muestra si decide cerrar por completo la partida o si se continua
 	//una variable booleana
@@ -548,7 +563,7 @@ Boton* Juego::elegirRutaTextura(char letra, int x, int y)
 		for (int i = 0; i < 4; i++) {
 			if (i == 0) {
 				n = "Blinky";
-				v = 3;
+				v = 6;
 				r = "Game_Files/Textures/Personajes/Fantasmas/Blinky.png";
 			}
 			else if (i == 1) {
@@ -558,7 +573,7 @@ Boton* Juego::elegirRutaTextura(char letra, int x, int y)
 			}
 			else if (i == 2) {
 				v = 2;
-				n = "Inky";
+				n = "Inky"; 
 				r = "Game_Files/Textures/Personajes/Fantasmas/Inky.png";
 			}
 			else if (i == 3) {
@@ -700,6 +715,20 @@ void Juego::mostrarFantasmas()
 
 	}
 
+}
+
+void Juego::resetearMovimientos()
+{
+	pacman->setMovH(0);
+	pacman->setMovV(0);
+
+	for (int i = 0; i < 4; i++) {
+
+		fantasmas[i]->setMovH(0);
+		fantasmas[i]->setMovV(0);
+		fantasmas[i]->getSprite()->setPosition(fantasmas[i]->getPix(), fantasmas[i]->getPiy());
+
+	}
 }
 
 int Juego::obtenerVidas()
@@ -968,7 +997,7 @@ void Juego::cambiarRutaFantasmas()
 
 		if (fantasmas[i]->getSprite()->getPosition().x > 810) {
 
-			fantasmas[i]->getSprite()->setPosition(-1, fantasmas[i]->getSprite()->getPosition().y);
+			fantasmas[i]->getSprite()->setPosition(-3, fantasmas[i]->getSprite()->getPosition().y);
 
 		}
 		else if (fantasmas[i]->getSprite()->getPosition().x < -10) {
