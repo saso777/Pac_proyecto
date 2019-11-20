@@ -50,6 +50,7 @@ public:
 	bool isOcupado();
 	bool existe(Nodo*& lista, int dato);
 	int menor(Nodo*& lista);
+	int mayor(Nodo*& lista);
 	void insertar(Nodo*& lista, int dato);
 	Nodo* eliminar(Nodo*& lista, int dato);
 	Nodo* getNodoDato(Nodo*& lista, int dato);
