@@ -4,6 +4,7 @@
 #include "Personaje.h"
 #include "Pantalla_GameOver.h"
 #include<iostream>
+#include<cstdlib>
 #include<SFML/Graphics.hpp>
 #include <queue>
 
@@ -29,14 +30,21 @@ private:
 
 
 	//referente a los personajes
+	
 	Personaje* pacman;
 	Personaje* fantasmas[4];
-	Nodo* camino, * lista;
+	//referente a los personajes
+
+	//Respecto a Dijkstra
+	Nodo* camino1, *camino2, * lista1, *lista2;
+	//Respecto a Dijkstra
+
+	//Respecto a Floyd
 	int** matAd;///matriz de adyacencia
 	int** matFloyd; //metriz 1 del floyd
 	int** matRutas; //matriz de rutas del  floyd
+	//Respecto a Floyd
 
-	//referente a los personajes
 	//referente al UI
 	Boton* poderesDisp[3];
 	Boton* vecVidas[6];//el jugador podra tener un maximo de tres vidas...
@@ -145,9 +153,13 @@ public:
 
 	void falsearEstanciaPacman();
 	Nodo* dijkstra(Nodo*& lista, int x, int y);
+	Nodo* dijkstraLargo(Nodo*& lista, int x, int y);
 	//Nodo* dijkstra(Nodo*& lista, int px, int py, int fx, int fy);//lo mismo pero mas varato XD...mejor despues
 
-	void cambiarRutaFantasmas();
+	void cambiarRutaBlinky();//para dijkstra
+	void cambiarRutaPinky();//para dijkstra
+	void cambiarRutaInky();//para al azar
+	void cambiarRutaClyde();//para Floyd
 
 	//buscar ubicacion de pacman con respecto a la matriz y buscar el vertice en el cual puede ser que este pacman
 
@@ -159,4 +171,7 @@ public:
 	void RecRutaFloyd(int i, int j, queue<Nodo>* lista);
 	
 
+
+
+	Nodo* buscarVerticeAleatorio();
 };

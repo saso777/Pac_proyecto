@@ -294,6 +294,23 @@ int Nodo::menor(Nodo*& lista) {
 	return menor;
 }
 
+int Nodo::mayor(Nodo*& lista) {
+	Nodo* aux = lista;
+	int mayor = -1;
+	if (aux != NULL) {
+		mayor = aux->getId();
+		if (aux->getSiguiente() != NULL) {
+			while (aux->getSiguiente() != NULL) {
+				if (aux->getPesoAcumulado() < aux->getSiguiente()->getPesoAcumulado()) {
+					mayor = aux->getSiguiente()->getId();
+				}
+				aux = aux->getSiguiente();
+			}
+		}
+	}
+	return mayor;
+}
+
 bool Nodo::existe(Nodo*& lista, int dato) {
 	bool encontrado = false;
 	if (lista != NULL) {

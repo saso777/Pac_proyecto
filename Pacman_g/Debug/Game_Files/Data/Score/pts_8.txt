@@ -1,6 +1,6 @@
 mayor cantidad puntos en este nivel:
-0
+1800
 cantidad veces jugado:
-0
+1
 mejor tiempo en este nivel:
-10000000000000000000000
+38

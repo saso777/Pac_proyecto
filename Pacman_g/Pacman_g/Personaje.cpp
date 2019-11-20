@@ -564,8 +564,8 @@ void Personaje::fElegirMovimiento(Nodo*& camino)
 {
 	
 	if (camino != NULL) {
-		//cout << "Nodox: " << camino->getPx();		cout << "-----NodoY: " << camino->getPy() << endl;
-		//cout << "FantasmaX: " << sprite->getPosition().x << "-----FantasmaY: " << sprite->getPosition().y << endl;
+		/*cout << "Nodox: " << camino->getPx();		cout << "-----NodoY: " << camino->getPy() << endl;
+		cout << "FantasmaX: " << sprite->getPosition().x << "-----FantasmaY: " << sprite->getPosition().y << endl;*/
 
 		
 		if (camino->getPx() > sprite->getPosition().x) {
@@ -591,24 +591,28 @@ void Personaje::fElegirMovimiento(Nodo*& camino)
 			movV = -1;
 
 		}
-		else {
-
-			//cout << "NADA----NADA-----NADA" << endl;
-			movH = 0;	movV = 0;
-
-		}
+		
 
 	}
 
 }
 
-bool Personaje::fMoverFantasma(Nodo*& camino)
+bool Personaje::fMoverFantasma(Nodo*& camino, bool cambiar)
 {
-	bool x = false;
+	bool x = false;//x es innecesario
 	if (sprite != NULL) {
 		//antes de hacer movimiento evaluar si choca con pacman(tal vez) 
-		x = fEvaluarPosFantasma(camino);
+		//x = fEvaluarPosFantasma(camino);//metodo innecesario XD
+
+
+
+
 		sprite->setPosition(sprite->getPosition().x + (velocidad * movH), sprite->getPosition().y + (velocidad * movV));
+		/*if (cambiar == true) {
+			if (camino->getSiguiente() != NULL) {
+				camino = camino->getSiguiente();
+			}
+		}*/
 		return x;
 		//despues de hacer movimiento evaluar si choca con pacman(tal vez)  tambien...
 	}
@@ -624,11 +628,18 @@ bool Personaje::fEvaluarPosFantasma(Nodo*& camino)
 {
 	if (camino != NULL) {
 
-		if (camino->getPx() == sprite->getPosition().x && camino->getPy() == sprite->getPosition().y) {
+		//cout << camino->getHayPacman() << endl << endl << endl;
+		if (camino->getPx() > sprite->getPosition().x - 10 
+			&& camino->getPx() < sprite->getPosition().x + 10
+			&& camino->getPy() > sprite->getPosition().y - 10
+			&& camino->getPy() < sprite->getPosition().y + 10) {
 
 			camino = camino->getPredecesor();
-			fElegirMovimiento(camino);
-			cout << "HA LLEGAO" << endl;
+
+			fElegirMovimiento(camino);//-??
+			
+			
+			cout << "HA LLEGAO**********************************" << endl;
 			return true;
 		}
 		else {
