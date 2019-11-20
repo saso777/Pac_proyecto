@@ -1113,7 +1113,7 @@ Nodo* Juego::Floyd(Nodo* inicio, Nodo* finals)
 
 	}
 
-	return lista;
+	return auxiliar;
 }
 
 void Juego::RecRutaFloyd(int i, int j, queue<Nodo>* lista)
