@@ -450,20 +450,11 @@ void Juego::verificarPts(int mitadPacDots)
 	if (mitadPacDots == ptsTotal / 10) {
 
 		//aumentar la velocidad de los fantasmas
-		cout << "PUNTOS******************************************************************************" << endl;
+		cout << "PUNTOS******************************************************************************" << endl << endl << endl << endl << endl;;
+		fantasmas[0]->setVelocidad(6);
 
 	}
-	if (pacDots == 0) {
-
-		cout << "Todos los pacdots comidos" << endl;
-		ptsTotal = ptsTotal + (100 * nivel);
-		gamePassed();
-		rw->close();
-		//se muestran cuantas vidas quedaron, cuantos puntos hizo, cual es el puntaje total, cauntos fantasmas murieron,
-		//tiempo que duro la partida y si murio  no en la partida
-
-	}
-	else if (vidas == 0) {
+	if (vidas == 0) {
 		cout << "Sin Vidas" << endl;
 		juegoIniciado = false;
 		resetearMovimientos();
@@ -474,10 +465,21 @@ void Juego::verificarPts(int mitadPacDots)
 			vidas = obtenerVidas();
 			pacman->setVidas(vidas);
 		}
+	}
+	else if (pacDots == 0) {
+
+		cout << "Todos los pacdots comidos" << endl;
+		ptsTotal = ptsTotal + (100 * nivel);
+		gamePassed();
+		rw->close();
+		//se muestran cuantas vidas quedaron, cuantos puntos hizo, cual es el puntaje total, cauntos fantasmas murieron,
+		//tiempo que duro la partida y si murio  no en la partida
+
+	}
 
 		//verificar el puntaje global total para asi poder ver si se pueden comprar algunos juegos
 
-	}
+	
 
 }
 
@@ -1016,10 +1018,10 @@ void Juego::cambiarRutaBlinky()//para dijsktra
 
 			if (scenario[f][c] != NULL) {
 				//cout << "FX: " << fantasmas[i]->getX() << "FY: " << fantasmas[i]->getY() << endl;
-				if ((fantasmas[0]->getSprite()->getPosition().x < scenario[f][c]->getX() + 6/*(scenario[f][c]->getAncho() / 2)*/)
-					&& fantasmas[0]->getSprite()->getPosition().x > scenario[f][c]->getX() - 6/*(scenario[f][c]->getAncho() / 2)*/
-					&& fantasmas[0]->getSprite()->getPosition().y < scenario[f][c]->getY() + 6/*(scenario[f][c]->getAlto() / 2) - 5*/
-					&& fantasmas[0]->getSprite()->getPosition().y > scenario[f][c]->getY() - 6/*(scenario[f][c]->getAlto() / 2) + 5*/) {
+				if ((fantasmas[0]->getSprite()->getPosition().x < scenario[f][c]->getX() + 10/*(scenario[f][c]->getAncho() / 2)*/)
+					&& fantasmas[0]->getSprite()->getPosition().x > scenario[f][c]->getX() - 10/*(scenario[f][c]->getAncho() / 2)*/
+					&& fantasmas[0]->getSprite()->getPosition().y < scenario[f][c]->getY() + 10/*(scenario[f][c]->getAlto() / 2) - 5*/
+					&& fantasmas[0]->getSprite()->getPosition().y > scenario[f][c]->getY() - 10/*(scenario[f][c]->getAlto() / 2) + 5*/) {
 					cout << "Fantasma en Vertice::::::" << c << " , " << f << endl;
 					//aqui valida las posiciones de los vertices y de los fantasmas
 					for (int i = 0; i < mapa->getTamGrafo(); i++) {
@@ -1064,11 +1066,20 @@ void Juego::cambiarRutaBlinky()//para dijsktra
 	//mapa->getListaAdyacencia()->mostrarLista(lista1);
 
 	if ((idP != -1 && idF != -1)) {
-		cout << "idP:   " << idP << endl;
-		cout << "idF:   " << idF << endl;
-
+		/*cout << "idP:   " << idP << endl;
+		cout << "idF:   " << idF << endl;*/
+		
 		camino1->cambiarVisitados(lista1);//////////////////////////////////////////7
+		
+		if (pacman->getComer() == true) {
+			
+			idP = buscarVerticeAleatorio()->getId();
+
+		}
 		camino1 = dijkstra(lista1, idP, idF);
+
+
+
 		//cout << endl << endl << "OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl;
 		while (camino1->getSiguiente() != NULL) {
 			camino1 = camino1->getSiguiente();
@@ -1173,7 +1184,7 @@ void Juego::cambiarRutaPinky()
 					&& fantasmas[1]->getSprite()->getPosition().x > scenario[f][c]->getX() - 6/*(scenario[f][c]->getAncho() / 2)*/
 					&& fantasmas[1]->getSprite()->getPosition().y < scenario[f][c]->getY() + 6/*(scenario[f][c]->getAlto() / 2) - 5*/
 					&& fantasmas[1]->getSprite()->getPosition().y > scenario[f][c]->getY() - 6/*(scenario[f][c]->getAlto() / 2) + 5*/) {
-					cout << "Fantasma en Vertice::::::" << c << " , " << f << endl;
+					//cout << "Fantasma en Vertice::::::" << c << " , " << f << endl;
 					//aqui valida las posiciones de los vertices y de los fantasmas
 					for (int i = 0; i < mapa->getTamGrafo(); i++) {
 
@@ -1217,11 +1228,22 @@ void Juego::cambiarRutaPinky()
 	//mapa->getListaAdyacencia()->mostrarLista(lista1);
 
 	if ((idP != -1 && idF != -1)) {
-		cout << "idP:   " << idP << endl;
-		cout << "idF:   " << idF << endl;
+		/*cout << "idP:   " << idP << endl;
+		cout << "idF:   " << idF << endl;*/
 
 		camino2->cambiarVisitados(lista2);//////////////////////////////////////////7
+		
+		
+		
+		if (pacman->getComer() == true) {
+
+			int idP = buscarVerticeAleatorio()->getId();
+
+		}
 		camino2 = dijkstraLargo(lista2, idP, idF);
+
+
+
 		//cout << endl << endl << "OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl;
 		while (camino2->getSiguiente() != NULL) {
 			camino2 = camino2->getSiguiente();
@@ -1356,6 +1378,11 @@ void Juego::cambiarRutaClyde()
 
 	if (ini != NULL && fin != NULL) {
 
+		if (pacman->getComer() == true) {
+
+			fin = buscarVerticeAleatorio();
+			
+		}
 		aux = Floyd(ini, fin);
 		aux = aux->getSiguiente();
 		
@@ -1508,5 +1535,22 @@ void Juego::RecRutaFloyd(int i, int j, queue<Nodo>* lista)
 			
 			RecRutaFloyd(temp, j,lista);
 		}
+}
+
+Nodo *Juego::buscarVerticeAleatorio()
+{
+	int n = 0;
+	srand(time(NULL));
+	
+	n = rand() % mapa->getTamGrafo() + 0;
+	if (mapa->getGrafo(n)->getHayPacman() == true) {
+		
+		n = rand() % mapa->getTamGrafo() + 0;//////revisar aqui y cambiar
+
+	}
+
+	Nodo* nodo = mapa->getGrafo(n);
+
+	return nodo;
 }
 

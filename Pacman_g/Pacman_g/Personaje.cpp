@@ -564,8 +564,8 @@ void Personaje::fElegirMovimiento(Nodo*& camino)
 {
 	
 	if (camino != NULL) {
-		cout << "Nodox: " << camino->getPx();		cout << "-----NodoY: " << camino->getPy() << endl;
-		cout << "FantasmaX: " << sprite->getPosition().x << "-----FantasmaY: " << sprite->getPosition().y << endl;
+		/*cout << "Nodox: " << camino->getPx();		cout << "-----NodoY: " << camino->getPy() << endl;
+		cout << "FantasmaX: " << sprite->getPosition().x << "-----FantasmaY: " << sprite->getPosition().y << endl;*/
 
 		
 		if (camino->getPx() > sprite->getPosition().x) {

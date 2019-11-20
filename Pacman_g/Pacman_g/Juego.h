@@ -4,6 +4,7 @@
 #include "Personaje.h"
 #include "Pantalla_GameOver.h"
 #include<iostream>
+#include<cstdlib>
 #include<SFML/Graphics.hpp>
 #include <queue>
 
@@ -170,4 +171,7 @@ public:
 	void RecRutaFloyd(int i, int j, queue<Nodo>* lista);
 	
 
+
+
+	Nodo* buscarVerticeAleatorio();
 };
