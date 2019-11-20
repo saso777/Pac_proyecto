@@ -14,7 +14,7 @@ private:
 	Sprite* vecVidas[6];
 	Text* textPtjTotal;
 
-
+	int auxVidas;
 	int nivel, vidas, vidasPerdidas, fantasmasMuertos, ptsTotal, tiempo;
 	bool finalBueno, continuarPartida;
 

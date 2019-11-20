@@ -20,6 +20,7 @@ private:
 	float x, y;
 	bool esperarTecla;
 	bool comer;
+	bool disable;
 
 	//contadores(se pueden usar par saber cuantas veces quien mato a quien, en el caso del pacman son los fantasmas y viceversa)
 	int contador;

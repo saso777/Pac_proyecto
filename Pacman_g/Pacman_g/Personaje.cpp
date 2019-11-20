@@ -2,6 +2,7 @@
 
 Personaje::Personaje(int vidas, int velocidad, string nombre, float x, float y, string ruta, float scaleX, float scaleY, bool comer)
 {
+	this->disable = false;
 	this->pix = 0;
 	this->piy = 0;
 	this->velocidad = velocidad;
@@ -483,11 +484,11 @@ void Personaje::verColisionConFantasmas(int& ptsTotal, int& fantasmasMuertos, in
 
 					if (comer == true) {
 						fantasmasMuertos++;
-						/*///////////////////////////////////////PONER ESTO CUANDO SE QUIERA AUMENTAR LOS PUNTOS POR COMER FANTASMAS
+						///////////////////////////////////////PONER ESTO CUANDO SE QUIERA AUMENTAR LOS PUNTOS POR COMER FANTASMAS
 						ptsTotal = ptsTotal + (300 + (100 * contador));
 
 						contador++;
-						*////////////////////////////////////////PONER ESTO CUANDO SE QUIERA AUMENTAR LOS PUNTOS POR COMER FANTASMAS
+						///////////////////////////////////////PONER ESTO CUANDO SE QUIERA AUMENTAR LOS PUNTOS POR COMER FANTASMAS
 						//aqui se llamaria a la animacion de regreso a casa por medio del algoritmo de dijkstra........
 
 						fantasmas[i]->getSprite()->setPosition(fantasmas[i]->getPix(), fantasmas[i]->getPiy());
@@ -497,8 +498,22 @@ void Personaje::verColisionConFantasmas(int& ptsTotal, int& fantasmasMuertos, in
 						vidas--;
 						vidasPerdidas++;
 						cout << "Pum" << vidas << endl;
+						
+						
+						//esto es  para dejar quietos los personajes.
 						this->movV = 0;
 						this->movH = 0;
+						accion->key.code = Keyboard::C;
+						
+						//////////////////////////
+						for (int i = 0; i < 4; i++) {
+
+							fantasmas[i]->setMovH(0);
+							fantasmas[i]->setMovV(0);
+
+						}
+						//////////////////////////
+						
 						sprite->setPosition(pix, piy);
 
 						this->x = pix;
