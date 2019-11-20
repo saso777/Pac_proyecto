@@ -1136,13 +1136,13 @@ Nodo* Juego::Floyd(Nodo* inicio, Nodo* finals)
 		aux.pop();
 		auxiliar = auxiliar->getSiguiente();
 	}
-	while (lista!=NULL) {
+	/*while (lista!=NULL) {
 		cout << lista->getId();
 		lista = lista->getSiguiente();
 
-	}
+	}*/
 
-	return auxiliar;
+	return lista;
 }
 
 void Juego::RecRutaFloyd(int i, int j, queue<Nodo>* lista)
