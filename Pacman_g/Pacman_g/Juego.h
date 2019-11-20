@@ -152,6 +152,7 @@ public:
 
 	void falsearEstanciaPacman();
 	Nodo* dijkstra(Nodo*& lista, int x, int y);
+	Nodo* dijkstraLargo(Nodo*& lista, int x, int y);
 	//Nodo* dijkstra(Nodo*& lista, int px, int py, int fx, int fy);//lo mismo pero mas varato XD...mejor despues
 
 	void cambiarRutaBlinky();//para dijkstra

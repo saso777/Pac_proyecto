@@ -931,6 +931,77 @@ Nodo* Juego::dijkstra(Nodo*& lista, int x, int y) {
 	return finales;
 }
 
+Nodo* Juego::dijkstraLargo(Nodo*& lista, int x, int y) {
+	Nodo* temporales = NULL;
+	Nodo* finales = NULL;
+
+	int peso = 0;
+	int iteraciones = 1;
+	finales->insertarNodo(finales, finales->getNodoDato(lista, x));
+	temporales->setVisitado(lista, x);
+	bool fin = false;
+	if (x != y) {
+		while (!fin) {
+
+			Nodo* nodoDato = lista->getNodoDato(finales, x);
+			Nodo* nodoDato1 = lista->getNodoDato(lista, x);
+			Vertice* vertices = nodoDato1->getVertices();
+			while (vertices != NULL) {
+				if (!vertices->getVisitado()) {
+					if (!lista->existe(temporales, vertices->getDato())) {
+						Nodo* nodo = new Nodo();
+						nodo->setId(vertices->getDato());
+						nodo->setIteraciones(iteraciones);
+						nodo->setPesoAcumulado(nodoDato->getPesoAcumulado() + vertices->getPeso());
+						nodo->setPredecesor(nodoDato);
+						nodo->setX(lista->getNodoDato(lista, vertices->getDato())->getX());
+						nodo->setY(lista->getNodoDato(lista, vertices->getDato())->getY());
+						nodo->setPx(lista->getNodoDato(lista, vertices->getDato())->getPx());
+						nodo->setPy(lista->getNodoDato(lista, vertices->getDato())->getPy());
+
+						//cout << "NX:    " << lista->getNodoDato(lista, vertices->getDato())->getPx() << endl;
+						//cout << "NY:    " << nodo->getPy() << endl;
+
+						lista->insertarNodo(temporales, nodo);
+					}
+					else {
+						Nodo* aux = temporales; bool encontrado = false;
+						while (!encontrado) {
+
+							if (aux->getId() == vertices->getDato()) {
+								int pesoNodo = nodoDato->getPesoAcumulado() + vertices->getPeso();
+								encontrado = true;
+								if (pesoNodo < aux->getPesoAcumulado()) {
+									aux->setPesoAcumulado(pesoNodo);
+									aux->setIteraciones(iteraciones);
+									aux->setPredecesor(nodoDato);
+								}
+							}
+							else {
+								aux = aux->getSiguiente();
+							}
+						}
+					}
+				}
+				vertices = vertices->getSiguiente();
+			}
+			if (lista->mayor(temporales) != -1) {
+				Nodo* nodoFinal = lista->eliminar(temporales, lista->mayor(temporales));
+				finales->insertarNodo(finales, nodoFinal);
+				lista->setVisitado(lista, nodoFinal->getId());
+				iteraciones++;
+				if (nodoFinal->getId() == y) {
+					fin = true;
+				}
+				else {
+					x = nodoFinal->getId();
+				}
+			}
+		}
+	}
+	return finales;
+}
+
 void Juego::cambiarRutaBlinky()//para dijsktra
 {
 	
