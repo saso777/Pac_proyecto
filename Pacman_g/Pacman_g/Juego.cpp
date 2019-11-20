@@ -1238,6 +1238,26 @@ void Juego::cambiarRutaPinky()
 
 }
 
+void Juego::cambiarRutaClyde()
+{
+	
+	//clyde es el 4 xd
+	for (int i = 0; i < mapa->getTamGrafo(); i++) {
+
+		if (fantasmas[3]->getSprite()->getPosition().x < mapa->getGrafo(i)->getPx() + 15
+			&& fantasmas[3]->getSprite()->getPosition().x > mapa->getGrafo(i)->getPx() - 15
+			&& fantasmas[3]->getSprite()->getPosition().y < mapa->getGrafo(i)->getPy() + 15
+			&& fantasmas[3]->getSprite()->getPosition().y > mapa->getGrafo(i)->getPy() - 15) {
+
+
+
+		}
+
+	}
+
+}
+
+
 
 void Juego::crearFloyd()
 {

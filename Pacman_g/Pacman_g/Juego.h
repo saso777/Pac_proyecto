@@ -155,8 +155,9 @@ public:
 	//Nodo* dijkstra(Nodo*& lista, int px, int py, int fx, int fy);//lo mismo pero mas varato XD...mejor despues
 
 	void cambiarRutaBlinky();//para dijkstra
-	void cambiarRutaPinky();
-	void cambiarRutaClyde();
+	void cambiarRutaPinky();//para dijkstra
+	void cambiarRutaInky();//para al azar
+	void cambiarRutaClyde();//para Floyd
 
 	//buscar ubicacion de pacman con respecto a la matriz y buscar el vertice en el cual puede ser que este pacman
 
